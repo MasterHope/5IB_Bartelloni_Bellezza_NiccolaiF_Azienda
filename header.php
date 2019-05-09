@@ -10,28 +10,9 @@
 			<div class="logo"><a href="#">Bartelloni-Bellezza.</a></div>
 			<nav class="main_nav">
 			    <ul>
-				<li class="hassubs active">
-				    <a href="index.html">Home</a>
-				    <ul>
-					<li><a href="product.html">Product</a></li>
-					<li><a href="cart.html">Cart</a></li>
-					<li><a href="checkout.html">Check out</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				    </ul>
-				</li>
-				<li class="hassubs">
-				    <a href="categories.html">Categories</a>
-				    <ul>
-					<li><a href="categories.html">Category</a></li>
-					<li><a href="categories.html">Category</a></li>
-					<li><a href="categories.html">Category</a></li>
-					<li><a href="categories.html">Category</a></li>
-					<li><a href="categories.html">Category</a></li>
-				    </ul>
-				</li>
-				<li><a href="#">Accessories</a></li>
-				<li><a href="#">Offers</a></li>
-				<li><a href="contact.html">Contact</a></li>
+				<li>   <a href="index.php">Home</a></li>
+				<li><a href="contact.html">Contatti</a></li>
+				<li><a href="Prodotti.php">Prodotti</a></li>
 			    </ul>
 			</nav>
 			<div class="header_extra ml-auto">
@@ -125,15 +106,6 @@
 			<li class="page_menu_item menu_mm"><a href="cart.html">Cart<i class="fa fa-angle-down"></i></a></li>
 			<li class="page_menu_item menu_mm"><a href="checkout.html">Checkout<i class="fa fa-angle-down"></i></a></li>
 			<li class="page_menu_item menu_mm"><a href="contact.html">Contact<i class="fa fa-angle-down"></i></a></li>
-		    </ul>
-		</li>
-		<li class="page_menu_item has-children menu_mm">
-		    <a href="categories.html">Categories<i class="fa fa-angle-down"></i></a>
-		    <ul class="page_menu_selection menu_mm">
-			<li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-			<li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-			<li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-			<li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
 		    </ul>
 		</li>
 		<li class="page_menu_item menu_mm"><a href="index.html">Accessories<i class="fa fa-angle-down"></i></a></li>
