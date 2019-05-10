@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<title>Bartelloni-Bellezza Azienda</title>
+	<title>Bartelloni-Bellezza-Niccolai Azienda</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Sublime project">
@@ -35,9 +35,9 @@
 				    <div class="row">
 					<div class="col">
 					    <div class="home_slider_content"  data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
-						<div class="home_slider_title">A new Online Shop experience.</div>
-						<div class="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</div>
-						<div class="button button_light home_button"><a href="#">Shop Now</a></div>
+						<div class="home_slider_title">Nuovo shop</div>
+						<div class="home_slider_subtitle">Il nostro shop e' il migliore nell'universo. Acquista da noi!</div>
+						<div class="button button_light home_button"><a href="Prodotti.php">Acquista ora</a></div>
 					    </div>
 					</div>
 				    </div>
@@ -53,9 +53,9 @@
 				    <div class="row">
 					<div class="col">
 					    <div class="home_slider_content"  data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
-						<div class="home_slider_title">A new Online Shop experience.</div>
-						<div class="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</div>
-						<div class="button button_light home_button"><a href="#">Shop Now</a></div>
+						<div class="home_slider_title">Miglior Progetto di sempre</div>
+						<div class="home_slider_subtitle">Solo i migliori prodotti</div>
+						<div class="button button_light home_button"><a href="#">Acquista Ora</a></div>
 					    </div>
 					</div>
 				    </div>
@@ -71,9 +71,9 @@
 				    <div class="row">
 					<div class="col">
 					    <div class="home_slider_content"  data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
-						<div class="home_slider_title">A new Online Shop experience.</div>
-						<div class="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</div>
-						<div class="button button_light home_button"><a href="#">Shop Now</a></div>
+						<div class="home_slider_title">Acquista</div>
+						<div class="home_slider_subtitle">Il migliore shop</div>
+						<div class="button button_light home_button"><a href="#">Acquista ora</a></div>
 					    </div>
 					</div>
 				    </div>
@@ -116,7 +116,6 @@
 				<!-- Product -->
 				<div class="product">
 				    <div class="product_image"><img src="images/product_1.jpg" alt=""></div>
-				    <div class="product_extra product_new"><a href="categories.html">New</a></div>
 				    <div class="product_content">
 					<div class="product_title"><a href="product.html">Smart Phone</a></div>
 					<div class="product_price">$670</div>
@@ -126,7 +125,6 @@
 				<!-- Product -->
 				<div class="product">
 				    <div class="product_image"><img src="images/product_2.jpg" alt=""></div>
-				    <div class="product_extra product_sale"><a href="categories.html">Sale</a></div>
 				    <div class="product_content">
 					<div class="product_title"><a href="product.html">Smart Phone</a></div>
 					<div class="product_price">$670</div>
@@ -182,7 +180,6 @@
 				<!-- Product -->
 				<div class="product">
 				    <div class="product_image"><img src="images/product_8.jpg" alt=""></div>
-				    <div class="product_extra product_sale"><a href="categories.html">Hot</a></div>
 				    <div class="product_content">
 					<div class="product_title"><a href="product.html">Smart Phone</a></div>
 					<div class="product_price">$670</div>

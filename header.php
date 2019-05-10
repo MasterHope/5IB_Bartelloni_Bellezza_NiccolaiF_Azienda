@@ -7,7 +7,7 @@
 	    <div class="row">
 		<div class="col">
 		    <div class="header_content d-flex flex-row align-items-center justify-content-start">
-			<div class="logo"><a href="#">Bartelloni-Bellezza.</a></div>
+			<div class="logo"><a href="#">Azienda Commercio</a></div>
 			<nav class="main_nav">
 			    <ul>
 				<li>   <a href="index.php">Home</a></li>
