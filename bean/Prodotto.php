@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of Prodotto
+ * Classe che identifica un prodotto.
  *
  * @author Bartelloni_Bellezza_NiccolaiF
  */
