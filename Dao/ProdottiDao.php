@@ -43,8 +43,8 @@ class ProdottiDao extends Dao {
         $ok = 1;
         $sql = "update Prodotti set quantita=? where codice_prodotto=?";
         $connection = parent::getConnection();
-        $st = $connection->prepare(sql);
-        $st->bind_param("is", $codice, $quantita);
+        $st = $connection->prepare($sql);
+        $st->bind_param("is", $quantita, $codice);
         if (!$st->execute()) {
             $ok = -1;
         } else {
