@@ -17,13 +17,12 @@ class UtentiDao extends Dao {
 	 * @return boolean Se la query e' andata a buon fine
 	 * @throws Exception Eccezione in casi di fallimento
 	 */
-	public function insert($utente, $password, $ruolo) {
+	public function insert($utente, $password, $idRuolo) {
 		if ($this->exists($utente)) {
 			$password = crypt($password);
 			$sql = "insert into Utenti values(?,?,?,?)";
 			$con = parent::getConnection();
 			$st = $con->prepare($sql);
-			$idRuolo = 1;
 			$codiceUtente = crypt("ciaocome");
 			$st->bind_param("sssi", $codiceUtente, $utente, $password, $idRuolo);
 			if ($st->execute()) {
