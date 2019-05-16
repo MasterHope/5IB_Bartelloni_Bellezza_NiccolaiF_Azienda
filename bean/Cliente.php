@@ -20,8 +20,10 @@ class Cliente extends Utente{
      * @param type $citta
      * @param type $CAP
      * @param type $telefono
+     * @param type $codice_utente
      */
-    function __construct($cognome, $nome, $indirizzo, $citta, $CAP, $telefono) {
+    function __construct($cognome, $nome, $indirizzo, $citta, $CAP, $telefono,$codice_utente) {
+        $this->codice_utente=$codice_utente;
         $this->cognome = $cognome;
         $this->nome = $nome;
         $this->indirizzo = $indirizzo;

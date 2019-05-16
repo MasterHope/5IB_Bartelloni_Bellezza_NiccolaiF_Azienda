@@ -6,7 +6,6 @@
     </head>
     <body>
         <div class="super_container">
-            
             <?php include_once 'header.php'; ?>
             <!-- Home -->
 
