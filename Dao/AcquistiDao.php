@@ -40,7 +40,7 @@ class AcquistiDao extends Dao{
         $ok=1;
         $sql="insert into Acquisti values(?,?,?,?,?,?,?)";
         $connection=parent::getConnection();
-        if(!exists($ordine)){
+        if(!self::exists($ordine)){
             $st=$connection->prepare($sql);
             $codice_acquisto=$ordine->getCodice_acquisto();
             $data_ordine=$ordine->getData_ordine();
@@ -72,11 +72,10 @@ class AcquistiDao extends Dao{
         $codice_acquisto=$ordine->getCodice_acquisto();
         $st->bind_param("s", $codice_acquisto);
         $result=$st->execute();
-        $rows=$st->affected_rows;
+        $rows=$st->num_rows;
         if($rows==0){
             $exist=false;
         }
-        $result->free();
         $st->close();
         $connection->close();
         return $exist;
