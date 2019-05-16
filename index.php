@@ -17,7 +17,12 @@
     <body>
         <div class="super_container">
             
-            <?php include_once 'header.php'; ?>
+            <?php include_once 'header.php'; 
+ require 'Dao/UtentiDao.php';
+ $utenti=new UtentiDao();
+ $utenti->insert("dfkja", "banaksdjh", "Cliente");
+
+	    ?>
             <!-- Home -->
 
             <div class="home">
