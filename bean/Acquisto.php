@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Classe che identifica un acquisto.
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
 class Acquisto {
-   
+
     private $codice_acquisto;
     private $data_ordine;
     private $data_spedizione;
@@ -13,31 +14,39 @@ class Acquisto {
     private $codice_prodotto;
     private $codice_cliente;
     private $importo;
+
     /**
      * Metodo costruttore di Acquisto.
-     * @param string $codice_acquisto Codice in MD5 dell'acquisto.
-     * @param date $data_ordine Data dell'ordine.
-     * @param date $data_spedizione Data di spedizione dell'ordine.
+     * @param string $data_ordine Data dell'ordine.
+     * @param string $data_spedizione Data di spedizione dell'ordine.
      * @param int $quantita Quantita di prodotti comprata.
      * @param string $codice_prodotto Codice del prodotto comprato.
      * @param string $codice_cliente Codice del cliente che ha comprato un prodotto.
      * @param float $importo Costo dell'acquisto effettuato.
      */
-    function __construct($codice_acquisto, $data_ordine, $data_spedizione, $quantita, $codice_prodotto, $codice_cliente, $importo) {
-        $this->codice_acquisto = $codice_acquisto;
-        $this->data_ordine = $data_ordine;
-        $this->data_spedizione = $data_spedizione;
+    function __construct($data_ordine, $data_spedizione, $quantita, $codice_prodotto, $codice_cliente, $importo) {
+        $this->data_ordine = date("Y-m-d", strtotime($data_ordine));
+        $this->data_spedizione = date("Y-m-d", strtotime($data_spedizione));
         $this->quantita = $quantita;
         $this->codice_prodotto = $codice_prodotto;
         $this->codice_cliente = $codice_cliente;
         $this->importo = $importo;
     }
+
     /**
      * Metodo che ritorna la data dell'ordine.
      * @return date Data dell'ordine.
      */
     function getData_ordine() {
         return $this->data_ordine;
+    }
+
+    /**
+     * Metodo che ritorna il codice dell'acquisto.
+     * @return int Codice dell'acquisto.
+     */
+    function getCodice_acquisto() {
+        return $this->codice_acquisto;
     }
 
     /**
@@ -55,6 +64,7 @@ class Acquisto {
     function getQuantita() {
         return $this->quantita;
     }
+
     /**
      * Metodo che ritorna la spesa totale dell'acquisto.
      * @return float Costo della spesa dell'acquisto.
@@ -62,20 +72,23 @@ class Acquisto {
     function getImporto() {
         return $this->importo;
     }
+
     /**
      * Metodo che consente di settare la data dell'ordine.
-     * @param date $data_ordine Data dell'ordine.
+     * @param string $data_ordine Data dell'ordine.
      */
     function setData_ordine($data_ordine) {
-        $this->data_ordine = $data_ordine;
+        $this->data_ordine = date("Y-m-d", strtotime($data_ordine));
     }
+
     /**
      * Metodo che consente di settare la data della spedizione.
-     * @param date $data_spedizione Data della spedizione dell'acquisto.
+     * @param string $data_spedizione Data della spedizione dell'acquisto.
      */
     function setData_spedizione($data_spedizione) {
-        $this->data_spedizione = $data_spedizione;
+        $this->data_spedizione = date("Y-m-d", strtotime($data_spedizione));
     }
+
     /**
      * Metodo che consente di settare la quantità del prodotto acquistato.
      * @param int $quantita Numero di prodotti acquistati.
@@ -83,6 +96,7 @@ class Acquisto {
     function setQuantita($quantita) {
         $this->quantita = $quantita;
     }
+
     /**
      * Metodo che consente di settare l'importo dell'acquisto.
      * @param int $importo Importo dell'acquisto.
@@ -90,7 +104,28 @@ class Acquisto {
     function setImporto($importo) {
         $this->importo = $importo;
     }
+    /**
+     * Metodo che consente di settare il codice dell'acquisto.
+     * @param int Codice dell'acquisto.
+     */
+    function setCodice_acquisto($codice_acquisto) {
+        $this->codice_acquisto = $codice_acquisto;
+    }
 
+    /**
+     * Metodo che ritorna il codice del prodotto.
+     * @return string Codice del prodotto.
+     */
+    function getCodice_prodotto() {
+        return $this->codice_prodotto;
+    }
 
+    /**
+     * Metodo che ritorna il codice del cliente.
+     * @return string Codice del cliente.
+     */
+    function getCodice_cliente() {
+        return $this->codice_cliente;
+    }
 
 }
