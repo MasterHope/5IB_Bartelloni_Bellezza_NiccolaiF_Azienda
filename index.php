@@ -16,7 +16,11 @@
     </head>
     <body>
         <div class="super_container">
+            <?php
+            require_once './bean/Cliente.php';
+            require_once'./Dao/ClientiDao.php';
             
+            ?>
             <?php include_once 'header.php'; ?>
             <!-- Home -->
 

@@ -6,10 +6,10 @@
  * @author Bartelloni-Bellezza-NiccolaiF
  */
 class Utente {
-    private $codice_utente;
-    private $username;
-    private $password;
-    private $id_ruolo;
+    protected $codice_utente;
+    protected $username;
+    protected $password;
+    protected $id_ruolo;
     /**
      * Metodo costruttore dell'utente.
      * @param string $codice_utente Stringa identificativa del codice.

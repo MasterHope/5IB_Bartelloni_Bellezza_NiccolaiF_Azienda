@@ -17,7 +17,7 @@ class ClientiDao extends Dao{
      */
     function insert($cliente){
         $ok=1;
-        $sql="insert into Clienti values(?,?,?,?,?,?,?)";
+        $sql="insert into Clienti values(?,?,?,?,?,?,?,?)";
         $cognome=$cliente->getCognome();
         $nome=$cliente->getNome();
         $indirizzo=$cliente->getIndirizzo();
@@ -28,7 +28,7 @@ class ClientiDao extends Dao{
         if(!$this->exists($codice_cliente)){
             $connection=parent::getConnection();
             $st=$connection->prepare($sql);
-            $st->bind_param("ssssss",$codice_cliente
+            $st->bind_param("sssssss",$codice_cliente,$codice_utente
                     ,$cognome,$nome,$indirizzo,$citta,$CAP);
             if(!$st->execute()){
                 $ok=-1;
