@@ -51,7 +51,7 @@ class AcquistiDao extends Dao {
         $sql = "insert into Acquisti values(null,'$data_ordine'"
                 . ",'$data_spedizione',$quantita,'$codice_prodotto','$codice_cliente',$importo)";
         $connection = parent::getConnection();
-        if (!self::exists($ordine)) {
+        if (!$this->exists($ordine)) {
             if (!$connection->query($sql)) {
                 $ok = -1;
             }

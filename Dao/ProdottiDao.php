@@ -68,7 +68,7 @@ class ProdottiDao extends Dao {
         $sql = "insert into Prodotti values(?,?,?,?,?)";
         $connection = parent::getConnection();
         $st=null;
-        if (!self::exists($prodotto)) {
+        if (!$this->exists($prodotto)) {
             $st = $connection->prepare($sql);
             $codice_prodotto = $prodotto->getCodice_prodotto();
             $denominazione = $prodotto->getDenominazione();
