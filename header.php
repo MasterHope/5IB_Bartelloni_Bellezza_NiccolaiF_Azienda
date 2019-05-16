@@ -13,6 +13,8 @@
 				<li>   <a href="index.php">Home</a></li>
 				<li><a href="contact.html">Contatti</a></li>
 				<li><a href="Prodotti.php">Prodotti</a></li>
+				<li><a href="Registrazione.php">Registrati</a></li>
+				<li><a href="Login.php">Login</a></li>
 			    </ul>
 			</nav>
 			<div class="header_extra ml-auto">
@@ -101,16 +103,13 @@
 		<li class="page_menu_item has-children menu_mm">
 		    <a href="index.html">Home<i class="fa fa-angle-down"></i></a>
 		    <ul class="page_menu_selection menu_mm">
-			<li class="page_menu_item menu_mm"><a href="categories.html">Categories<i class="fa fa-angle-down"></i></a></li>
-			<li class="page_menu_item menu_mm"><a href="product.html">Product<i class="fa fa-angle-down"></i></a></li>
-			<li class="page_menu_item menu_mm"><a href="cart.html">Cart<i class="fa fa-angle-down"></i></a></li>
-			<li class="page_menu_item menu_mm"><a href="checkout.html">Checkout<i class="fa fa-angle-down"></i></a></li>
-			<li class="page_menu_item menu_mm"><a href="contact.html">Contact<i class="fa fa-angle-down"></i></a></li>
+			<li class="page_menu_item menu_mm"><a href="Prodotti.html">Prodotti<i class="fa fa-angle-down"></i></a></li>
+			<li class="page_menu_item menu_mm"><a href="Carello.php">Carrello<i class="fa fa-angle-down"></i></a></li>
+			<li class="page_menu_item menu_mm"><a href="contact.html">Contatti<i class="fa fa-angle-down"></i></a></li>
 		    </ul>
 		</li>
-		<li class="page_menu_item menu_mm"><a href="index.html">Accessories<i class="fa fa-angle-down"></i></a></li>
-		<li class="page_menu_item menu_mm"><a href="#">Offers<i class="fa fa-angle-down"></i></a></li>
-		<li class="page_menu_item menu_mm"><a href="contact.html">Contact<i class="fa fa-angle-down"></i></a></li>
+		<li class="page_menu_item menu_mm"><a href="index.php">Home<i class="fa fa-angle-down"></i></a></li>
+		<li class="page_menu_item menu_mm"><a href="Contatti.html">Contatti<i class="fa fa-angle-down"></i></a></li>
 	    </ul>
 	</div>
     </div>
