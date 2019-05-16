@@ -67,7 +67,7 @@ class ProdottiDao extends Dao {
         $ok = 1;
         $sql = "insert into Prodotti values(?,?,?,?,?)";
         $connection = parent::getConnection();
-        if (!prodottoEsiste($prodotto)) {
+        if (!exists($prodotto)) {
             $st = $connection->prepare($sql);
             $codice_prodotto = $prodotto->getCodice_prodotto();
             $denominazione = $prodotto->getDenominazione();
@@ -89,7 +89,7 @@ class ProdottiDao extends Dao {
      * Metodo utilizzato per verificare se il prodotto esiste o meno nel database. 
      * Ritorna bool True se esiste, false altrimenti.
      */
-    private function prodottoEsiste($prodotto){
+    private function exists($prodotto){
         $exist=true;
         $sql="select * from Prodotti where codice_prodotto=?";
         $connection=parent::getConnection();
@@ -101,6 +101,9 @@ class ProdottiDao extends Dao {
         if($rows==0){
             $exist=false;
         }
+        $result->free();
+        $st->close();
+        $connection->close();
         return $exist;
     }
 }
