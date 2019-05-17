@@ -1,7 +1,7 @@
 <?php
 
 require_once'Dao.php';
-require_once'../bean/Cliente.php';
+require_once'bean/Cliente.php';
 /**
  * Classe Dao dedita alla gestione dei dati inerenti ai clienti.
  *
@@ -23,13 +23,15 @@ class ClientiDao extends Dao{
         $indirizzo=$cliente->getIndirizzo();
         $citta=$cliente->getCitta();
         $CAP=$cliente->getCAP();
-        $hash=$cognome+$nome+$indirizzo+$citta+$CAP;
+        $telefono=$cliente->getTelefono();
+        $hash=$cognome . $nome . $indirizzo . $citta . $CAP. $telefono;
+        $codice_utente=$cliente->getCodice_utente();
         $codice_cliente=md5($hash);
         if(!$this->exists($codice_cliente)){
             $connection=parent::getConnection();
             $st=$connection->prepare($sql);
-            $st->bind_param("sssssss",$codice_cliente,$codice_utente
-                    ,$cognome,$nome,$indirizzo,$citta,$CAP);
+            $st->bind_param("ssssssss",$codice_cliente,$codice_utente
+                    ,$cognome,$nome,$indirizzo,$citta,$CAP,$telefono);
             if(!$st->execute()){
                 $ok=-1;
             }
@@ -49,11 +51,11 @@ class ClientiDao extends Dao{
         $connection=parent::getConnection();
         $st=$connection->prepare($sql);
         $st->bind_param("s", $codice_cliente);
+        $st->execute();
         $result=$st->get_result();
         if($result->num_rows == 0){
             $exists=false;
         }
-        $result->free();
         $connection->close();
         return $exists;
     }

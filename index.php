@@ -8,7 +8,6 @@
         <div class="super_container">
             <?php include_once 'header.php'; ?>
             <!-- Home -->
-
             <div class="home">
                 <div class="home_slider_container">
 

@@ -5,7 +5,8 @@ require_once 'Utente.php';
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-class Cliente extends Utente{
+class Cliente{
+    private $codice_utente;
     private $cognome;
     private $nome;
     private $indirizzo;
@@ -71,6 +72,10 @@ class Cliente extends Utente{
         return $this->telefono;
     }
 
+    function getCodice_utente(){
+        return $this->codice_utente;
+    }
+    
     function setCognome($cognome) {
         $this->cognome = $cognome;
     }
