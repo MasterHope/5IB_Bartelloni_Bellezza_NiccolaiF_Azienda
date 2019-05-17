@@ -59,6 +59,7 @@ class AcquistiDao extends Dao {
             $ok = 0;
         }
         $connection->close();
+        $this->aggiornaQuantitaProdotto($codice_prodotto,$quantita);
         return $ok;
     }
 
@@ -81,6 +82,23 @@ class AcquistiDao extends Dao {
         $st->close();
         $connection->close();
         return $exist;
+    }
+    /**
+     * Metodo che aggiorna la quantità dei prodotti disponibili in magazzino.
+     * @param string $codice_prodotto Codice del prodotto.
+     * @param int $quantita Quantita da rimuovere dal magazzino.
+     * @return bool True se il prodotto è stato aggiornato, false altrimenti.
+     */
+    public function aggiornaQuantitaProdotto($codice_prodotto, $quantita) {
+        $ok=true;
+        $sql="update Prodotti set quantita=quantita - ? where codice_prodotto=?";
+        $connection=parent::getConnection();
+        $st=$connection->prepare($sql);
+        $st->bind_param("is", $quantita,$codice_prodotto);
+        if(!$st->execute()){
+            $ok=false;
+        }
+        return $ok;
     }
 
 }
