@@ -23,7 +23,7 @@ class UtentiDao extends Dao {
 			$sql = "insert into Utenti values(?,?,?,?)";
 			$con = parent::getConnection();
 			$st = $con->prepare($sql);
-			$codiceUtente = crypt("ciaocome");
+			$codiceUtente = md5("ciaocome");
 			$st->bind_param("sssi", $codiceUtente, $utente, $password, $idRuolo);
 			if ($st->execute()) {
 				return true;
@@ -44,6 +44,28 @@ class UtentiDao extends Dao {
 		$st = $con->prepare($sql);
 		$st->bind_param("s", $utente);
 		return $st->execute();
+	}
+
+	/**
+	 * Metodo per controllare la correttezza dell'username e della password immesse
+	 * @param type $user
+	 * @param type $password
+	 * @return boolean
+	 */
+	public function checkLogin($user, $password) {
+		if ($this->exists($user)) {
+			$sql = "select * from Utenti where username=" . "'$user'";
+			$con = parent::getConnection();
+			$result = $con->query($sql);
+			$rows = $result->fetch_array();
+			$password = crypt($password);
+			if ($password == $rows['password']) {
+				$ok = true;
+			}
+		} else {
+			$ok = false;
+		}
+		return $ok;
 	}
 
 }

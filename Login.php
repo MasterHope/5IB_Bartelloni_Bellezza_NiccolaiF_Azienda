@@ -2,26 +2,26 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Registrazione Utente</title>
+        <title>Login</title>
 	<?php include_once 'head.php'; ?>
     </head>
     <body>
-	    <?php include_once 'header.php'; ?>
 
-	<form action="ConfermaRegistrazione.php" method="POST">
-	    <div class="container">
-		<div class="row align-items-center" style="margin-top: 150px">
+	<?php include_once 'header.php'; ?>
+	<form action="ConfermaLogin.php" method="POST">
+	    <div class="container" style="margin-top: 150px">
+		<div class="row">
 		    <div class="col-md-6">
-			<h2>Username</h2>
-			<input type="text" name="username" value="" required="true"/>
+			<h3>Username</h3>
+			<input type="text" name="username" value="" />
 		    </div>
 		    <div class="col-md-6">
-			<h2>Password</h2>
-			<input type="password" name="password" value="" required="true"/>
+			<h3>Password</h3>
+			<input type="password" name="username" value="" />
 		    </div>
 		</div>
-		<div class="row align-items-center" style="margin-top: 20px;margin-bottom: 10px">
-		    <h2>Ruoli</h2><br>
+		<div class="row" style="margin-top: 10px">
+		    <h3>Ruolo</h3>
 		</div>
 		<div class="row align-items-center" style="margin-top: 20px;margin-bottom: 10px">
 		    <div class="col-md-2">
@@ -37,17 +37,24 @@
 			Responsabile Clienti
 		    </div>
 		    <div class="col-md-2">
-			Responsabile Spedizioni
 			<input type="radio" name="ruolo" value="responsabile-spedizioni"  />
+			Responsabile Spedizioni
 		    </div>
 		    <div class="col-md-2">
-			Responsabile del Magazzino
 			<input type="radio" name="ruolo" value="responsabile-magazzino"  />
+			Responsabile del Magazzino
 		    </div>
 		</div>
-		<input type="submit" />
+		<div class="row" style="margin-top: 50px">
+		    <div class="col-md-6">
+			<input type="submit" />
+		    </div>
+		    <div class="col-md-6">
+			<input type="reset">
+		    </div>
+		</div>
 	    </div>
 	</form>
+	<?php include_once 'footer.php'; ?>
     </body>
-    <?php include_once 'footer.php'; ?>
 </html>
