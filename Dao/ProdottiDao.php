@@ -106,4 +106,25 @@ class ProdottiDao extends Dao {
         $connection->close();
         return $exist;
     }
+    /**
+     * Metodo che ritorna il prodotto con rispettivo codice che viene passato come parametro.
+     * @param string $codice Codice relativo al prodotto
+     * @return Prodotto Prodotto con relativo codice, null se il prodotto non viene trovato.
+     */
+    function getProdotto($codice){
+        $prodotto=null;
+        $sql="select * from Prodotti where codice_prodotto='$codice'";
+        $connection=parent::getConnection();
+        $result=$connection->query($sql);
+        if($result->num_rows!=0){
+            $row=$result->fetch_array();
+            $denominazione=$row['denominazione'];
+            $prezzo=$row['prezzo'];
+            $quantita=$row['quantita'];
+            $descrizione=$row['descrizione'];
+            $prodotto=new Prodotto($codice, $denominazione, $descrizione, $prezzo, $quantita);
+        }
+        parent::closeConnection($connection);
+        return $prodotto;
+    }
 }
