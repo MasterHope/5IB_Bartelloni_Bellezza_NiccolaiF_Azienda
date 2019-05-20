@@ -11,7 +11,7 @@ $prodotti = $prodottiDao->findAll();
         <?php include_once 'head.php'; ?>
     </head>
     <body>
-        <div class="super_container">
+        <div class="super_container" style="margin-top: 150px">
             <?php include_once 'header.php'; ?>
             <!-- Products -->
 
