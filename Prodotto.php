@@ -25,10 +25,8 @@ if (isset($_GET['prodotto'])) {
     </head>
     <body>
 
-        <div class="super_container">
-
-
             <?php include_once 'header.php'; ?>
+        <div class="super_container" style="margin-top: 150px">
             <!-- Product Details -->
 
             <div class="product_details">
@@ -48,7 +46,6 @@ if (isset($_GET['prodotto'])) {
                                 <div class="details_text">
                                     <?php print($prodotto->getDescrizione()); ?>
                                 </div>
-
                                 <!-- Product Quantity -->
                                 <div class="product_quantity_container">
                                     <div class="product_quantity clearfix">
