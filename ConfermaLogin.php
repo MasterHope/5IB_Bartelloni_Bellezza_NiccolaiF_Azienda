@@ -11,7 +11,13 @@
 	    $user = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 	    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 	    $utenti=new UtentiDao();
-	    echo $utenti->checkLogin($user,$password);
+	    if($utenti->checkLogin($user,$password)){
+		    session_unset();
+		    session_destroy();
+		    session_start();
+		    $_SESSION['utente']=$user;
+		    $_SESSION['password']=$password;
+	    }
 
 	    
 
