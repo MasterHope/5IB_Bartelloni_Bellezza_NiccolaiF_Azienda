@@ -237,6 +237,27 @@ section
 	overflow: hidden;
 	cursor: pointer;
 }
+
+.button p{
+    display: block;
+	position: relative;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 57px;
+	color: #1b1b1b;
+	background: none;
+	z-index: 1;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+
+.button p:hover{
+    color:white;
+}
+
 .button a
 {
 	display: block;
