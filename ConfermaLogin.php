@@ -16,7 +16,7 @@
 		    session_destroy();
 		    session_start();
 		    $_SESSION['utente']=$user;
-		    $_SESSION['password']=$password;
+		    $_SESSION['password']=crypt($password);
 	    }
 
 	    
