@@ -1,6 +1,6 @@
 <?php
 
-require_once'Dao.php';
+require_once (__DIR__."Dao.php");
 
 /**
  * Classe utilizzata per la gestione dei dati inerenti agli acquisti.
