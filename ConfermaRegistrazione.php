@@ -15,7 +15,9 @@
 
 	    if ($utenti->insert($user, $password, $ruoli[$ruolo])) {
 		    ?><center><h1 style="margin-top: 150px">Registrazione avvenuta con successo!</h1></center><?php
-	}
+	    }else{
+		    echo "Errore".$user." ".$password." ";
+	    }
 	?>
 	    <?php include_once 'footer.php' ?>
     </body>

@@ -12,6 +12,7 @@
 	    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 	    $utenti=new UtentiDao();
 	    if($utenti->checkLogin($user,$password)){
+		    session_start();
 		    session_unset();
 		    session_destroy();
 		    session_start();

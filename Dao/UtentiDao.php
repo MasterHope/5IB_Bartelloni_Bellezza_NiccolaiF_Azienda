@@ -1,6 +1,6 @@
 <?php
 
-require_once'Dao.php';
+require_once'Dao/Dao.php';
 
 /**
  * Classe che rappresenta un utente
@@ -18,12 +18,12 @@ class UtentiDao extends Dao {
 	 * @throws Exception Eccezione in casi di fallimento
 	 */
 	public function insert($utente, $password, $idRuolo) {
-		if ($this->exists($utente)) {
+		if (!$this->exists($utente)) {
 			$password = crypt($password);
 			$sql = "insert into Utenti values(?,?,?,?)";
 			$con = parent::getConnection();
 			$st = $con->prepare($sql);
-			$codiceUtente = md5("ciaocome");
+			$codiceUtente = md5($user);
 			$st->bind_param("sssi", $codiceUtente, $utente, $password, $idRuolo);
 			if ($st->execute()) {
 				return true;
@@ -40,10 +40,18 @@ class UtentiDao extends Dao {
 	 */
 	public function exists($utente) {
 		$sql = "select * from Utenti where Utenti.username=?";
-		$con = parent::getConnection();
-		$st = $con->prepare($sql);
-		$st->bind_param("s", $utente);
-		return $st->execute();
+		/* $con = parent::getConnection(); */
+		/* $st = $con->prepare($sql); */
+		/* $st->bind_param("s", $utente); */
+		/* return $st->execute(); */
+		$con=parent::getConnection();
+		$result=$con->query($sql);
+		if ($result->num_rows == 0) {
+		return false;	
+		}else{
+			return true;
+		}
+
 	}
 
 	/**
