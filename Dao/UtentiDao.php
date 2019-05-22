@@ -30,6 +30,7 @@ class UtentiDao extends Dao {
 			} else {
 				throw new Exception("Query non andata a buon fine", $code, $previous);
 			}
+                        parent::closeConnection($con);
 		}
 	}
 
@@ -43,7 +44,9 @@ class UtentiDao extends Dao {
 		$con = parent::getConnection();
 		$st = $con->prepare($sql);
 		$st->bind_param("s", $utente);
-		return $st->execute();
+		$ok=$st->execute();
+                parent::closeConnection($con);
+                return $ok;
 	}
 
 	/**
@@ -65,7 +68,26 @@ class UtentiDao extends Dao {
 		} else {
 			$ok = false;
 		}
+                parent::closeConnection($con);
 		return $ok;
 	}
+        /**
+         * Funzione che dato un codice di un utente, ritorna il codice del cliente corrispondente.
+         * @param string $codice_utente Codice del cliente.
+         * @return String null se il cliente non viene trovato, stringa identificativa del codice altrimenti.
+         */
+        public function getCliente($codice_utente){
+            $codice_cliente=null;
+            $connection=parent::getConnection();
+            $sql="select codice_cliente from Clienti c, Utenti u where c.codice_utente=u.codice_utente"
+                    . " and c.codice_utente=$codice_utente";
+            $result=$connection->query($sql);
+            if($result->num_rows!=0){
+                $row=$result->fetch_array();
+                $codice_cliente=$row['codice_cliente'];
+            }
+            parent::closeConnection($connection);
+            return $codice_cliente;
+        }
 
 }
