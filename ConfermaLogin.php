@@ -19,7 +19,6 @@
 		    $_SESSION['utente']=$user;
 		    $_SESSION['password']=md5($password);
 	    }
-
 	    
 
 
