@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__."/Dao/Dao.php");
+require_once ($_SERVER['DOCUMENT_ROOT']."/Dao/Dao.php");
 
 /**
  * Classe che rappresenta un utente
