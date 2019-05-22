@@ -1,6 +1,6 @@
 <?php 
 session_start();
 if (!isset($_SESSION['username'])) {
-	header('Location:/Login.php');
+	header("Location:".$_SERVER['workdir']."/Login.php");
 	die;
 }

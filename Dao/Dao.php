@@ -1,14 +1,13 @@
 <?php
-error_reporting(E_ERROR | E_PARSE);
 
 /**
  * Classe che permette di gestire la connessione al database
  */
 class Dao {
 
-	private $hostname="localhost";
+	private $hostname="db";
 	private $user="root";
-	private $password="";
+	private $password="root";
 	private $database="Azienda";
 	/**
 	 * Funzione per ottenere la connessione al database
