@@ -14,15 +14,8 @@
 				<li><a href="contact.html">Contatti</a></li>
 				<li><a href="Prodotti.php">Prodotti</a></li>
 				<li><a href="Registrazione.php">Registrati</a></li>
-				<li><a href="Login.php">
-                                    <?php
-                                    session_start();
-                                    if(isset($_SESSION['utente'])){
-                                        print($_SESSION['utente']);
-                                    } else {
-                                        print('Login');
-                                    }
-                                ?></a></li>
+				<li><a href="Login.php">Login
+                                </a></li>
 			    </ul>
 			</nav>
 			    <div class="search">
