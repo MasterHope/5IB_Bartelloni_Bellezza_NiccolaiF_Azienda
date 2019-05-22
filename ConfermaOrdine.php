@@ -15,6 +15,7 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
     $codice_cliente = $daoUtenti->getCliente($codice_utente);
     $daoProdotti = new ProdottiDao();
     $prodotto = $daoProdotti->getProdotto($codice);
+    $prezzo=$prodotto->getPrezzo();
     $importo=$prodotto->getPrezzo()*$quantita;
     if ($codice_cliente != null) {
         $ordine = new Acquisto(date("Y-m-d"), null, $quantita, $codice, $codice_cliente, $importo);
@@ -40,11 +41,12 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
         <link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
     </head>
     <body>
-
+        <div style="z-index: 1000;">
+        <div class="alert-success"><h6 style="text-align: center;font-family: inherit">Ordine effettuato con successo!</h6></div>
+        </div>
             <?php include_once 'header.php'; ?>
         <div class="super_container" style="margin-top: 150px">
             <!-- Product Details -->
-<form action="ConfermaOrdine.php?codice=<?php echo"$codice"?>" method="POST" name="ordine">
             <div class="product_details">
                 <div class="container">
                     <div class="row details_row">
@@ -52,44 +54,18 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
                         <div class="col-lg-6">
                             <div class="details_content">
                                 <div class="details_name"><?php print($prodotto->getDenominazione()); ?></div>
-                                <div class="details_price"><?php print($prodotto->getPrezzo()); ?></div>
-                        </div>
-                    </div>
-
-                    <div class="row description_row">
-                        <div class="col">
+                                <div class="details_price"><?php echo"$prezzo" .
+                                        " x" . "$quantita" . "<br>Totale="  ."$importo"?></div>
+                                
                             <div class="description_text">
                                 <?php print($prodotto->getDescrizione()); ?>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </form>
-            <!-- Newsletter -->
-            <div class="newsletter">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="newsletter_border"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-8 offset-lg-2">
-                            <div class="newsletter_content text-center">
-                                <div class="newsletter_title">Subscribe to our newsletter</div>
-                                <div class="newsletter_text"></div>
-                                <div class="newsletter_form_container">
-                                    <form action="#" id="newsletter_form" class="newsletter_form">
-                                        <input type="email" class="newsletter_input" required="required">
-                                        <button class="newsletter_button trans_200"><span>Subscribe</span></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
+</div>
 
             <!-- Footer -->
 
