@@ -41,14 +41,10 @@ class UtentiDao extends Dao {
      */
     public function exists($utente) {
         $ok=true;
-        $sql = "select * from Utenti where Utenti.username=?";
-        /* $con = parent::getConnection(); */
-        /* $st = $con->prepare($sql); */
-        /* $st->bind_param("s", $utente); */
-        /* return $st->execute(); */
+        $sql = "select * from Utenti where Utenti.username='$utente'";
         $con = parent::getConnection();
         $result = $con->query($sql);
-        if ($con->affected_rows == 0) {
+        if (!$result || $result->num_rows==0) {
             $ok=false;
         }
         parent::closeConnection($con);
@@ -72,8 +68,8 @@ class UtentiDao extends Dao {
             if ($password == $rows['password']) {
                 $ok = true;
             }
-        }
         parent::closeConnection($con);
+        }
         return $ok;
     }
 
@@ -85,8 +81,7 @@ class UtentiDao extends Dao {
     public function getCliente($codice_utente) {
         $codice_cliente = null;
         $connection = parent::getConnection();
-        $sql = "select codice_cliente from Clienti c, Utenti u where c.codice_utente=u.codice_utente"
-                . " and c.codice_utente=$codice_utente";
+        $sql = "select codice_cliente from Clienti natural join Utenti";
         $result = $connection->query($sql);
         if ($result->num_rows != 0) {
             $row = $result->fetch_array();
