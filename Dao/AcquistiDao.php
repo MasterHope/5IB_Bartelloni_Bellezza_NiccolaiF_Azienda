@@ -1,6 +1,6 @@
 <?php
 
-require_once (__DIR__."Dao.php");
+require_once ("Dao.php");
 
 /**
  * Classe utilizzata per la gestione dei dati inerenti agli acquisti.
@@ -49,7 +49,7 @@ class AcquistiDao extends Dao {
         $codice_cliente = $ordine->getCodice_cliente();
         $importo = (double) $ordine->getImporto();
         $sql = "insert into Acquisti values(null,'$data_ordine'"
-                . ",'$data_spedizione',$quantita,'$codice_prodotto','$codice_cliente',$importo)";
+                . ",null,$quantita,'$codice_prodotto','$codice_cliente',$importo)";
         $connection = parent::getConnection();
         if (!$this->exists($ordine)) {
             if (!$connection->query($sql)) {

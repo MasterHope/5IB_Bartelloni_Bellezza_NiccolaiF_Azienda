@@ -1,7 +1,7 @@
 <?php
 
-require_once (__DIR__."Dao/Dao.php");
-require_once (__DIR__."Dao/ProdottiDao");
+require_once ("Dao.php");
+require_once ("ProdottiDao.php");
 
 /**
  * Classe Dao utilizzata per gestire i prodotti presenti nella base di dati.

@@ -18,8 +18,10 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
     $prezzo=$prodotto->getPrezzo();
     $importo=$prodotto->getPrezzo()*$quantita;
     if ($codice_cliente != null) {
-        $ordine = new Acquisto(date("Y-m-d"), null, $quantita, $codice, $codice_cliente, $importo);
-        $daoAcquisti->aggiungiSpedizione($ordine);
+        $ordine = new Acquisto(date("Y-m-d"), null, $quantita, $codice, $codice_utente, $importo);
+        $ok=$daoAcquisti->aggiungiSpedizione($ordine);
+    } else {
+        $ok=-2;
     }
 }
 ?>
@@ -41,9 +43,17 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
         <link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
     </head>
     <body>
+        <?php
+        if($ok==1){
+        ?>
         <div style="z-index: 1000;">
         <div class="alert-success"><h6 style="text-align: center;font-family: inherit">Ordine effettuato con successo!</h6></div>
         </div>
+        <?php }else{
+            if($ok==-2){
+                ?><div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Devi essere un cliente per ordinare!</h6></div>
+            <?php } ?>
+        <?php } ?>
             <?php include_once 'header.php'; ?>
         <div class="super_container" style="margin-top: 150px">
             <!-- Product Details -->
@@ -62,6 +72,7 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
                             </div>
                         </div>
                     </div>
+              <?php echo"$s"; ?>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,5 @@
 <?php
-/**
- * Classe che gestisce gli errori dell'applicazione.
- *
- * @author utente
- */
-class ErrorHandler {
-    //put your code here
+
+function ErrorHandlerAcquisti($errno, $errstr){
+    header('location: ErrorPage.php?errno='.$errno.'&errstr='.$errstr);
 }
