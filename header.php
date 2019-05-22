@@ -14,7 +14,14 @@
 				<li><a href="contact.html">Contatti</a></li>
 				<li><a href="Prodotti.php">Prodotti</a></li>
 				<li><a href="Registrazione.php">Registrati</a></li>
-				<li><a href="Login.php">Login</a></li>
+				<li><a href="Login.php"><?php
+                                    session_start();
+                                    if(isset($_SESSION['utente'])){
+                                        echo($_SESSION['utente']);
+                                    } else {
+                                        echo"Login";
+                                    }
+                                ?></a></li>
 			    </ul>
 			</nav>
 			<div class="header_extra ml-auto">
