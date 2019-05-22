@@ -1,7 +1,7 @@
 <?php
 
-require_once'Dao.php';
-require_once'bean/Cliente.php';
+require_once (__DIR__."Dao.php");
+require_once (__DIR__."bean/Cliente.php");
 /**
  * Classe Dao dedita alla gestione dei dati inerenti ai clienti.
  *
