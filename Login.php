@@ -18,7 +18,7 @@
 		    </div>
 		    <div class="col-md-6">
 			<h3>Password</h3>
-			<input type="password" name="username" value="" />
+			<input type="password" name="password" value="" />
 		    </div>
 		</div>
 		<div class="row" style="margin-top: 10px">

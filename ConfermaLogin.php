@@ -8,8 +8,8 @@
 	    <?php
 
 	    require_once 'Dao/UtentiDao.php';
-	    $user = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
-	    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
+	    $user = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+	    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 	    $utenti=new UtentiDao();
 	    if($utenti->checkLogin($user,$password)){
 		    session_start();
@@ -19,6 +19,7 @@
 		    $_SESSION['utente']=$user;
 		    $_SESSION['password']=md5($password);
 	    }
+            
 
 	    
 
