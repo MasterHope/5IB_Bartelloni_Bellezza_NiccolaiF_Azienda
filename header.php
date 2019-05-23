@@ -14,7 +14,9 @@
 								<li><a href="contact.html">Contatti</a></li>
 								<li><a href="Prodotti.php">Prodotti</a></li>
 								<?php 
+                                                                if(!isset($_SESSION)){
                                                                 session_start();
+                                                                }
                                                                 if (!isset($_SESSION['utente'])) {?>
 								<li><a href="Registrazione.php">Registrati</a></li>
 								<li><a href="Login.php">Login</a></li>
