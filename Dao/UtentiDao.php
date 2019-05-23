@@ -20,15 +20,14 @@ class UtentiDao extends Dao {
     public function insert($utente, $password, $idRuolo) {
         if (!$this->exists($utente)) {
             $password = md5($password);
-            $sql = "insert into Utenti values(?,?,?,?)";
             $con = parent::getConnection();
-            $st = $con->prepare($sql);
-            $codiceUtente = md5($user);
-            $st->bind_param("sssi", $codiceUtente, $utente, $password, $idRuolo);
-            if ($st->execute()) {
-                return true;
+            $codiceUtente = md5($utente);
+            $sql = "insert into Utenti values('$codiceUtente', '$utente', '$password', $idRuolo)";
+            $con->query($sql);
+            if ($con->affected_rows==1) {
+                return $idRuolo;
             } else {
-                throw new Exception("Query non andata a buon fine", $code, $previous);
+                return false;
             }
             parent::closeConnection($con);
         }
