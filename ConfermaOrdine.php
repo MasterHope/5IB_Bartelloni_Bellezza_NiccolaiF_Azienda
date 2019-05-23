@@ -4,6 +4,7 @@ require_once'Dao/ProdottiDao.php';
 require_once'bean/Prodotto.php';
 require_once'bean/Acquisto.php';
 require_once'Dao/UtentiDao.php';
+$ok=1;
 if (isset($_POST['quantita']) && isset($_GET['codice'])) {
     $quantita = $_POST['quantita'];
     $codice = $_GET['codice'];
@@ -51,8 +52,13 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
         </div>
         <?php }else{
             if($ok==-2){
-                ?><div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Devi essere un cliente per ordinare!</h6></div>
-            <?php } ?>
+                ?><div style="z-index: 1000;">
+        <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Devi essere un cliente per ordinare!</h6></div>
+                </div>
+            <?php } else { if($ok==-1){?>
+        <div style="z-index: 1000;">
+            <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Errore nell'inserimento, riprovare!</h6></div></div>
+            <?php }} ?>
         <?php } ?>
             <?php include_once 'header.php'; ?>
         <div class="super_container" style="margin-top: 150px">
@@ -69,12 +75,15 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
                                 
                             <div class="description_text">
                                 <?php print($prodotto->getDescrizione()); ?>
+                                
+<?php echo"$ok";?>
                             </div>
                         </div>
                     </div>
                     </div>
                 </div>
             </div>
+            
 </div>
 
             <!-- Footer -->
