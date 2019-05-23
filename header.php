@@ -13,15 +13,13 @@
 								<li>   <a href="index.php">Home</a></li>
 								<li><a href="contact.html">Contatti</a></li>
 								<li><a href="Prodotti.php">Prodotti</a></li>
-								<?php if (!isset($_SESSION['username'])) {?>
+								<?php if (!isset($_SESSION['utente'])) {?>
 								<li><a href="Registrazione.php">Registrati</a></li>
 								<li><a href="Login.php">Login</a></li>
 <?php
-
-}else{
-	echo $_SESSION['username'];
-}
-?>
+}else{?>
+    <li><a href="#"><?php print($_SESSION['utente']); ?></a></li>
+<?php } ?>
 							</ul>
 						</nav>
 						<div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
