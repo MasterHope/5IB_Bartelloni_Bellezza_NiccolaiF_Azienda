@@ -11,7 +11,6 @@ if($utenti->checkLogin($user,$password)){
 	session_start();
 	$_SESSION['utente']=$user;
 	$_SESSION['password']=md5($password);
-	die;
 }
 ?>
 <!DOCTYPE html>
