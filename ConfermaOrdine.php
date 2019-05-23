@@ -72,7 +72,6 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
                             </div>
                         </div>
                     </div>
-              <?php echo"$s"; ?>
                     </div>
                 </div>
             </div>
