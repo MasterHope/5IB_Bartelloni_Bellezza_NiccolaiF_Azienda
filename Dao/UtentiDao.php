@@ -17,17 +17,17 @@ class UtentiDao extends Dao {
      * @return boolean Se la query e' andata a buon fine
      * @throws Exception Eccezione in casi di fallimento
      */
-    public function insert($utente, $password, $idRuolo) {
+    public function insert($utente, $password) {
         if (!$this->exists($utente)) {
             $password = md5($password);
             $con = parent::getConnection();
             $codiceUtente = md5($utente);
-            $sql = "insert into Utenti values('$codiceUtente', '$utente', '$password', $idRuolo)";
+            $sql = "insert into Utenti values('$codiceUtente', '$utente', '$password', 1)";
             $con->query($sql);
-            if ($con->affected_rows==1) {
-                return $idRuolo;
-            } else {
+            if ($con->affected_rows==0) {
                 return false;
+            } else {
+                return true;
             }
             parent::closeConnection($con);
         }
