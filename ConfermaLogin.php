@@ -1,7 +1,6 @@
 <?php
 require_once 'Dao/UtentiDao.php';
 session_start();
-define('ROOT_PATH',$_SERVER['DOCUMENT_ROOT']);
 session_unset();
 session_destroy();
 $user = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);

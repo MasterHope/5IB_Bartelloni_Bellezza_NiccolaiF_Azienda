@@ -5,9 +5,9 @@
  */
 class Dao {
 
-	private $hostname="db";
+	private $hostname="localhost";
 	private $user="root";
-	private $password="root";
+	private $password="";
 	private $database="Azienda";
 	/**
 	 * Funzione per ottenere la connessione al database

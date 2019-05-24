@@ -21,7 +21,7 @@
 			<input type="password" name="password" value="" />
 		    </div>
 		</div>
-		<div class="row" style="margin-top: 10px">
+<!--		<div class="row" style="margin-top: 10px">
 		    <h3>Ruolo</h3>
 		</div>
 		<div class="row align-items-center" style="margin-top: 20px;margin-bottom: 10px">
@@ -45,7 +45,7 @@
 			<input type="radio" name="ruolo" value="responsabile-magazzino"  />
 			Responsabile del Magazzino
 		    </div>
-		</div>
+		</div>-->
 		<div class="row" style="margin-top: 50px">
 		    <div class="col-md-6">
 			<input type="submit" />
