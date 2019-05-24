@@ -12,7 +12,7 @@ class Acquisto {
     private $data_spedizione;
     private $quantita;
     private $codice_prodotto;
-    private $codice_cliente;
+    private $codice_utente;
     private $importo;
 
     /**
@@ -24,12 +24,12 @@ class Acquisto {
      * @param string $codice_cliente Codice del cliente che ha comprato un prodotto.
      * @param float $importo Costo dell'acquisto effettuato.
      */
-    function __construct($data_ordine, $data_spedizione, $quantita, $codice_prodotto, $codice_cliente, $importo) {
+    function __construct($data_ordine, $data_spedizione, $quantita, $codice_prodotto, $codice_utente, $importo) {
         $this->data_ordine = date("Y-m-d", strtotime($data_ordine));
         $this->data_spedizione = date("Y-m-d", strtotime($data_spedizione));
         $this->quantita = $quantita;
         $this->codice_prodotto = $codice_prodotto;
-        $this->codice_cliente = $codice_cliente;
+        $this->codice_utente = $codice_utente;
         $this->importo = $importo;
     }
 
@@ -72,8 +72,15 @@ class Acquisto {
     function getImporto() {
         return $this->importo;
     }
-
     /**
+     * Metodo getter del codice utente.
+     * @return type
+     */
+    function getCodice_utente() {
+        return $this->codice_utente;
+    }
+
+        /**
      * Metodo che consente di settare la data dell'ordine.
      * @param string $data_ordine Data dell'ordine.
      */
@@ -120,12 +127,5 @@ class Acquisto {
         return $this->codice_prodotto;
     }
 
-    /**
-     * Metodo che ritorna il codice del cliente.
-     * @return string Codice del cliente.
-     */
-    function getCodice_cliente() {
-        return $this->codice_cliente;
-    }
 
 }

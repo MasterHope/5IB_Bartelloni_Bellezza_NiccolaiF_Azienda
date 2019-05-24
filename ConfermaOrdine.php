@@ -7,7 +7,7 @@ require_once'Dao/UtentiDao.php';
 $ok=1;
 if (isset($_POST['quantita']) && isset($_GET['codice'])) {
     $quantita = $_POST['quantita'];
-    $codice = $_GET['codice'];
+    $codice_prodotto = $_GET['codice'];
     $daoAcquisti = new AcquistiDao();
     session_start();
     $utente = $_SESSION['utente'];
@@ -15,11 +15,11 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
     $daoUtenti = new UtentiDao();
     $codice_cliente = $daoUtenti->getCliente($codice_utente);
     $daoProdotti = new ProdottiDao();
-    $prodotto = $daoProdotti->getProdotto($codice);
+    $prodotto = $daoProdotti->getProdotto($codice_prodotto);
     $prezzo=$prodotto->getPrezzo();
     $importo=$prodotto->getPrezzo()*$quantita;
     if ($codice_cliente != null) {
-        $ordine = new Acquisto(date("Y-m-d"), null, $quantita, $codice, $codice_utente, $importo);
+        $ordine = new Acquisto(date("Y-m-d"), null, $quantita, $codice_prodotto, $codice_utente, $importo);
         $ok=$daoAcquisti->aggiungiSpedizione($ordine);
     } else {
         $ok=-2;
@@ -76,7 +76,7 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
                             <div class="description_text">
                                 <?php print($prodotto->getDescrizione()); ?>
                                 
-<?php echo"$ok";?>
+<?php echo($ok);?>
                             </div>
                         </div>
                     </div>

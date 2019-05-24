@@ -89,5 +89,19 @@ class UtentiDao extends Dao {
         parent::closeConnection($connection);
         return $codice_cliente;
     }
+    
+    public function getRuolo($codice_utente){
+        $codice_cliente = null;
+        $connection = parent::getConnection();
+        $sql = "select Ruoli.descrizione from Utenti natural join Ruoli "
+                . "where codice_utente='$codice_utente'";
+        $result = $connection->query($sql);
+        if ($result->num_rows != 0) {
+            $row = $result->fetch_array();
+            $ruolo = $row['descrizione'];
+        }
+        parent::closeConnection($connection);
+        return $ruolo;
+    }
 
 }

@@ -46,10 +46,10 @@ class AcquistiDao extends Dao {
         $data_spedizione = $ordine->getData_spedizione();
         $quantita = $ordine->getQuantita();
         $codice_prodotto = $ordine->getCodice_prodotto();
-        $codice_cliente = $ordine->getCodice_cliente();
+        $codice_utente = $ordine->getCodice_utente();
         $importo = (double) $ordine->getImporto();
         $sql = "insert into Acquisti values(null,'$data_ordine'"
-                . ",null,$quantita,'$codice_prodotto','$codice_cliente',$importo)";
+                . ",null,$quantita,'$codice_prodotto','$codice_utente',$importo)";
         $connection = parent::getConnection();
         if (!$this->exists($ordine)) {
             if (!$connection->query($sql)) {
@@ -99,6 +99,14 @@ class AcquistiDao extends Dao {
             $ok=false;
         }
         return $ok;
+    }
+    
+    /**
+     * Metodo che ritorna tutti gli acquisti.
+     */
+    public function findAll(){
+        $sql="select * from Acquisti";
+        $conn=parent::getConnection();
     }
 
 }
