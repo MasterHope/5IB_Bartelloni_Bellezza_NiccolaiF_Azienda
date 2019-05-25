@@ -47,23 +47,14 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
         <link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
     </head>
     <body>
+        
+            <?php include_once 'header.php'; ?>
         <?php
         if($ok==1){
         ?>
         <div style="z-index: 1000;">
         <div class="alert-success"><h6 style="text-align: center;font-family: inherit">Ordine effettuato con successo!</h6></div>
         </div>
-        <?php }else{
-            if($ok==-2){
-                ?><div style="z-index: 1000;">
-        <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Devi essere un cliente per ordinare!</h6></div>
-                </div>
-            <?php } else { if($ok==-1){?>
-        <div style="z-index: 1000;">
-            <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Errore nell'inserimento, riprovare!</h6></div></div>
-            <?php }} ?>
-        <?php } ?>
-            <?php include_once 'header.php'; ?>
         <div class="super_container" style="margin-top: 150px">
             <!-- Product Details -->
             <div class="product_details">
@@ -86,6 +77,17 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
                     </div>
                 </div>
             </div>
+        <?php }else{
+            if($ok==-2){
+                ?><div style="z-index: 1000;">
+        <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Devi essere un cliente per ordinare!</h6></div>
+                </div>
+            <?php } else { if($ok==-1){?>
+        <div style="z-index: 1000;">
+            <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Errore nell'inserimento, riprovare!</h6></div></div>
+            <?php }} ?>
+        <?php } ?>
+        
             
 </div>
 
