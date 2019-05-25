@@ -19,7 +19,10 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
     $prezzo=$prodotto->getPrezzo();
     $importo=$prodotto->getPrezzo()*$quantita;
     if ($codice_cliente != null) {
-        $ordine = new Acquisto(date("Y-m-d"), null, $quantita, $codice_prodotto, $codice_utente, $importo);
+        $data_ordine=date("Y-m-d");
+        $data_spedizione= strtotime ( '+1 week' , strtotime ( $data_ordine ) ) ;
+        $data_spedizionedef=date("Y-m-d", $data_spedizione);
+        $ordine = new Acquisto($data_ordine, $data_spedizionedef, $quantita, $codice_prodotto, $codice_utente, $importo);
         $ok=$daoAcquisti->aggiungiSpedizione($ordine);
     } else {
         $ok=-2;

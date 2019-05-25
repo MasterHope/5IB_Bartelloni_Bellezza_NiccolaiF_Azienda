@@ -49,7 +49,7 @@ class AcquistiDao extends Dao {
         $codice_utente = $ordine->getCodice_utente();
         $importo = (double) $ordine->getImporto();
         $sql = "insert into Acquisti values(null,'$data_ordine'"
-                . ",null,$quantita,'$codice_prodotto','$codice_utente',$importo)";
+                . ",'$data_spedizione',$quantita,'$codice_prodotto','$codice_utente',$importo)";
         $connection = parent::getConnection();
         if (!$this->exists($ordine)) {
             if (!$connection->query($sql)) {
