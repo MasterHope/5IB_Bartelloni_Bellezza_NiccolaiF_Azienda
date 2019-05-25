@@ -49,7 +49,7 @@ class AcquistiDao extends Dao {
         $codice_utente = $ordine->getCodice_utente();
         $importo = (double) $ordine->getImporto();
         $sql = "insert into Acquisti values(null,'$data_ordine'"
-                . ",null,$quantita,'$codice_prodotto','$codice_utente',$importo)";
+                . ",'$data_spedizione',$quantita,'$codice_prodotto','$codice_utente',$importo)";
         $connection = parent::getConnection();
         if (!$this->exists($ordine)) {
             if (!$connection->query($sql)) {
@@ -59,7 +59,7 @@ class AcquistiDao extends Dao {
             $ok = 0;
         }
         $connection->close();
-        $this->aggiornaQuantitaProdotto($codice_prodotto,$quantita);
+        $this->aggiornaQuantitaProdotto($codice_prodotto, $quantita);
         return $ok;
     }
 
@@ -83,6 +83,7 @@ class AcquistiDao extends Dao {
         $connection->close();
         return $exist;
     }
+
     /**
      * Metodo che aggiorna la quantità dei prodotti disponibili in magazzino.
      * @param string $codice_prodotto Codice del prodotto.
@@ -90,23 +91,40 @@ class AcquistiDao extends Dao {
      * @return bool True se il prodotto è stato aggiornato, false altrimenti.
      */
     public function aggiornaQuantitaProdotto($codice_prodotto, $quantita) {
-        $ok=true;
-        $sql="update Prodotti set quantita=quantita - ? where codice_prodotto=?";
-        $connection=parent::getConnection();
-        $st=$connection->prepare($sql);
-        $st->bind_param("is", $quantita,$codice_prodotto);
-        if(!$st->execute()){
-            $ok=false;
+        $ok = true;
+        $sql = "update Prodotti set quantita=quantita - ? where codice_prodotto=?";
+        $connection = parent::getConnection();
+        $st = $connection->prepare($sql);
+        $st->bind_param("is", $quantita, $codice_prodotto);
+        if (!$st->execute()) {
+            $ok = false;
         }
         return $ok;
     }
-    
+
     /**
      * Metodo che ritorna tutti gli acquisti.
      */
-    public function findAll(){
-        $sql="select * from Acquisti";
-        $conn=parent::getConnection();
+    public function findAll() {
+        $list = array();
+        $ok = 1;
+        $sql = "select * from Acquisti";
+        $conn = parent::getConnection();
+        $result = $conn->query($sql);
+        while ($row = $result->fetch_array()) {
+            $codice_acquisto = $row['codice_acquisto'];
+            $data_ordine = $row['data_ordine'];
+            $data_spedizione = $row['data_spedizione'];
+            $quantita = $row['quantita'];
+            $codice_prodotto = $row['codice_prodotto'];
+            $codice_utente = $row['codice_utente'];
+            $importo = $row['importo'];
+            $acquisto = new Acquisto($data_ordine, $data_spedizione
+                    , $quantita, $codice_prodotto, $codice_utente, $importo);
+            $acquisto->setCodice_acquisto($codice_acquisto);
+            $list[] = $acquisto;
+        }
+        return $list;
     }
 
 }

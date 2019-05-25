@@ -13,6 +13,8 @@ $acquistiDao = new AcquistiDao();
 $ruolo = $utentiDao->getRuolo($codice_prodotto);
 $ruoli = array("cliente" => 1, "marketing" => 2, "responsabile-clienti" => 3, "responsabile-spedizioni" => 4, "responsabile-magazzino" => 5);
 $idruolo = $ruoli["$ruolo"];
+$daoAcquisti=new AcquistiDao();
+$acquisti=$daoAcquisti->findAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,12 +27,13 @@ $idruolo = $ruoli["$ruolo"];
             <?php include_once 'header.php'; ?>
         </div>
         <?php if ($idruolo == 4) {
+            
         } else {
             ?> 
             <div style="z-index: 1000;">
                 <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Operazione non permessa!</h6></div>
             </div>
-            <?php include_once 'footer.php'; ?>
 <?php } ?>  
+            <?php include_once 'footer.php'; ?>
     </body>
 </html>
