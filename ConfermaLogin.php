@@ -26,6 +26,7 @@ if($utenti->checkLogin($user,$password)){
 	<body>
 		<?php include_once 'header.php' ?>
 <div style="margin-top:150px">
+    <h1>Loggato</h1>
 
 </div>
 		<?php include_once 'footer.php' ?>
