@@ -91,7 +91,6 @@ class UtentiDao extends Dao {
     }
     
     public function getRuolo($codice_utente){
-        $codice_cliente = null;
         $connection = parent::getConnection();
         $sql = "select Ruoli.descrizione from Utenti natural join Ruoli "
                 . "where codice_utente='$codice_utente'";
