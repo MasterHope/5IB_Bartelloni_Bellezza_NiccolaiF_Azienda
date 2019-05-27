@@ -59,7 +59,6 @@ $prodotti = $prodottiDao->findAll();
 
 
         <!-- Icon Boxes -->
-
         <div class="icon_boxes">
             <div class="container">
                 <div class="row icon_box_row">
