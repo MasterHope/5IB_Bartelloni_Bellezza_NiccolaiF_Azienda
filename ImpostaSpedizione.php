@@ -25,15 +25,34 @@ $acquisti=$daoAcquisti->findAll();
     <body>
         <div class="super_container">
             <?php include_once 'header.php'; ?>
-        </div>
-        <?php if ($idruolo == 4) {
-            
-        } else {
+        
+        <?php if ($idruolo == 4) {?>
+            <div class="container" style="margin-top: 150px">
+                <h1>Acquisti</h1>
+                <form action="aggiornaDataSpedizione.php" method="POST">
+            <?php foreach($acquisti as $acquisto){?>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3><?php echo($acquisto->getCodice_acquisto());?></h3>
+<input type="hidden" name="codice_acquisto" value="<?php echo($acquisto->getCodice_acquisto());?>" />
+                    </div>
+                </div>
+                <div class="row">
+                    <h3>Data di spedizione attuale</h3>
+                    <div class="col-md-6">
+                        <h3><?php echo($acquisto->getData_spedizione());?></h3>
+                    </div>
+                </div>
+              <input type="submit" value="Aggiorna" />
+            </div>
+            <?php }?>
+            <?php } else {
             ?> 
             <div style="z-index: 1000;">
                 <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Operazione non permessa!</h6></div>
             </div>
 <?php } ?>  
             <?php include_once 'footer.php'; ?>
-    </body>
+    </div>
+        </body>
 </html>
