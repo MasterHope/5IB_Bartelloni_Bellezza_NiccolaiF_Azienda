@@ -90,6 +90,11 @@ class UtentiDao extends Dao {
         return $codice_cliente;
     }
     
+    /**
+     * Metodo per ottenere il ruolo dell'utente di cui e' fornito il codice
+     * @param string $codice_utente
+     * @return string contenente il nome del ruolo dell'utente richiesto 
+     */
     public function getRuolo($codice_utente){
         $connection = parent::getConnection();
         $sql = "select Ruoli.descrizione from Utenti natural join Ruoli "

@@ -1,7 +1,10 @@
 <?php
 require_once 'session.php';
 require_once 'bean/Prodotto.php';
-require_once 'Dao/prodottiDao.php';
+require_once 'Dao/ProdottiDao.php';
+require_once 'Dao/UtentiDao.php';
+$dao = new UtentiDao();
+$ruolo = $dao->getRuolo(md5($_SESSION['utente']));
 $prodottiDao = new ProdottiDao();
 $prodotti = $prodottiDao->findAll();
 ?>
@@ -9,11 +12,11 @@ $prodotti = $prodottiDao->findAll();
 <html lang="en">
     <head>
         <title>Bartelloni-Bellezza-Niccolai Azienda</title>
-        <?php include_once 'head.php'; ?>
+	<?php include_once 'head.php'; ?>
     </head>
     <body>
         <div class="super_container" style="margin-top: 150px">
-            <?php include_once 'header.php'; ?>
+	    <?php include_once 'header.php'; ?>
             <!-- Products -->
 
             <div class="products">
@@ -22,21 +25,22 @@ $prodotti = $prodottiDao->findAll();
                         <div class="col">
 
                             <div class="product_grid">
-                                <?php foreach ($prodotti as $prodotto) {
-                                    $prod = $prodotto->getCodice_prodotto();
-                                    ?>
-                                    <!-- Product -->
-                                    <div class="product">
-                                        <div class="product_content">
-                                            <div class="product_title">
-                                                <?php  ?>
-                                                <a href="Prodotto.php?prodotto=<?php print($prod);?>">
-                                                    <?php print($prodotto->getDenominazione()); ?></a></div>
-                                            <div class="product_price"><?php print($prodotto->getPrezzo() . '€'); ?></div>
-                                        </div>
-                                    </div>
-                                </div>            
-                            <?php } ?>
+				<?php
+				foreach ($prodotti as $prodotto) {
+					$prod = $prodotto->getCodice_prodotto();
+					?>
+					<!-- Product -->
+					<div class="product">
+					    <div class="product_content">
+						<div class="product_title">
+						    <?php ?>
+						    <a href="Prodotto.php?prodotto=<?php print($prod); ?>">
+							<?php print($prodotto->getDenominazione()); ?></a></div>
+						<div class="product_price"><?php print($prodotto->getPrezzo() . '€'); ?></div>
+					    </div>
+					</div>
+				    </div>            
+			    <?php } ?>
 
 
 
@@ -45,11 +49,16 @@ $prodotti = $prodottiDao->findAll();
                     </div>
                 </div>
             </div>
+	    <?php
+//Controllo il ruolo dell'utente
+	    if ($ruolo == "responsabile-marketing") {
+		    ?><a href="AggiuntaProdotti.php">Aggiungi un prodotto</a><?php
+	    }
+	    ?>
         </div>
 
 
         <!-- Icon Boxes -->
-
         <div class="icon_boxes">
             <div class="container">
                 <div class="row icon_box_row">
@@ -91,6 +100,6 @@ $prodotti = $prodottiDao->findAll();
             </div>
         </div>
 
-        <?php include_once 'footer.php'; ?>
+	<?php include_once 'footer.php'; ?>
     </body>
 </html>

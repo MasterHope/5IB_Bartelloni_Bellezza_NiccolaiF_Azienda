@@ -11,7 +11,6 @@
 						<nav class="main_nav">
 							<ul>
 								<li>   <a href="index.php">Home</a></li>
-								<li><a href="contact.html">Contatti</a></li>
 								<li><a href="Prodotti.php">Prodotti</a></li>
 								<?php 
                                                                 if(!isset($_SESSION)){
@@ -76,7 +75,7 @@
 				<li class="page_menu_item has-children menu_mm">
 					<a href="index.html">Home<i class="fa fa-angle-down"></i></a>
 					<ul class="page_menu_selection menu_mm">
-						<li class="page_menu_item menu_mm"><a href="Prodotti.html">Prodotti<i class="fa fa-angle-down"></i></a></li>
+						<li class="page_menu_item menu_mm"><a href="Prodotti.php">Prodotti<i class="fa fa-angle-down"></i></a></li>
 						<li class="page_menu_item menu_mm"><a href="Carello.php">Carrello<i class="fa fa-angle-down"></i></a></li>
 						<li class="page_menu_item menu_mm"><a href="contact.html">Contatti<i class="fa fa-angle-down"></i></a></li>
 					</ul>
