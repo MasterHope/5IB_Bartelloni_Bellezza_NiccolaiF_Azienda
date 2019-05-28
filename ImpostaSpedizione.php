@@ -23,7 +23,7 @@ $acquisti = $daoAcquisti->findAll();
         <?php include_once 'head.php'; ?>
         <script>
             function isDataCorrect() {
-                var result=true;
+                var result = true;
                 var data_spedizione = document.getElementById("data_spedizione").value;
                 var data_ordine = document.getElementById("data_ordine").value;
                 var d_spedizione = new Date(data_spedizione);
@@ -31,10 +31,18 @@ $acquisti = $daoAcquisti->findAll();
                 var rSped = d_spedizione.getTime();
                 var rOrdine = d_ordine.getTime();
                 if (rSped <= rOrdine) {
-                    window.alert("La data della spedizione deve essere maggiore della data dell'ordine!");
-                    result=false;
+                    displayError();
+                    result = false;
+                } else{
+                    hideError();
                 }
                 return result;
+            }
+            function displayError() {
+                document.getElementById('errore').style.visibility="visible";
+            }
+            function hideError(){
+                document.getElementById('errore').style.visibility="hidden";
             }
             function loadDoc() {
                 var xhttp = new XMLHttpRequest();
@@ -46,10 +54,11 @@ $acquisti = $daoAcquisti->findAll();
                                 "<table border='1' cellspacing='10' cellpadding='10'><tr><td>Data Ordine</td><td>Data Spedizione</td><td>Quantità</td><td>Importo</td></tr>" +
                                 "<tr><td>" + elementi[3] + "</td>" + "<td>" + elementi[4] + "</td>" + "<td>" + elementi[6] + "</td>" + "<td>" + elementi[5] + "</td>" +
                                 "</tr></table><br><br>";
+
+                        document.getElementById('data_spedizione').value = elementi[4];
+                        document.getElementById('code').value = elementi[0];
+                        document.getElementById('data_ordine').value = elementi[3];
                     }
-                    document.getElementById('data_spedizione').value = elementi[4];
-                    document.getElementById('code').value = elementi[0];
-                    document.getElementById('data_ordine').value = elementi[3];
                 };
                 xhttp.open("POST", "ImpostaSpedizione.php", true);
                 xhttp.send();
@@ -57,6 +66,11 @@ $acquisti = $daoAcquisti->findAll();
         </script>
     </head>
     <body>
+        
+                    <div style="z-index: 1000;visibility: hidden;" id="errore">
+                        <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">
+                                La data di spedizione deve essere maggiore della data dell'ordine!</h6></div>
+                    </div>
         <div class="super_container" style="margin-top: 150px;">
             <?php include_once 'header.php'; ?>
             <div class='container' style='margin-left: 50px;'>
@@ -71,11 +85,11 @@ $acquisti = $daoAcquisti->findAll();
 
                             <option value="<?php echo($acquisto); ?>" onclick="loadDoc();">
 
-        <?php echo($codice); ?>
+                                <?php echo($codice); ?>
                             </option>
 
 
-    <?php } ?>
+                        <?php } ?>
                     </select> 
 
                 </div>
@@ -98,7 +112,7 @@ $acquisti = $daoAcquisti->findAll();
                         <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Operazione non permessa!</h6></div>
                     </div>
                 <?php } ?>  
-<?php include_once 'footer.php'; ?>
+                <?php include_once 'footer.php'; ?>
             </div>
     </body>
 </html>
