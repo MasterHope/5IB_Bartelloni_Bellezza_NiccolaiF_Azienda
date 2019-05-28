@@ -23,7 +23,39 @@ class Utente {
         $this->codice_utente = $codice_utente;
         $this->username = $username;
         $this->password = $password;
-        $this->ruolo = $ruolo;
+        $this->id_ruolo = $id_ruolo;
     }
+    function getCodice_utente() {
+	    return $this->codice_utente;
+    }
+
+    function getUsername() {
+	    return $this->username;
+    }
+
+    function getPassword() {
+	    return $this->password;
+    }
+
+    function getId_ruolo() {
+	    return $this->id_ruolo;
+    }
+
+    function setCodice_utente($codice_utente) {
+	    $this->codice_utente = $codice_utente;
+    }
+
+    function setUsername($username) {
+	    $this->username = $username;
+    }
+
+    function setPassword($password) {
+	    $this->password = $password;
+    }
+
+    function setId_ruolo($id_ruolo) {
+	    $this->id_ruolo = $id_ruolo;
+    }
+
 
 }

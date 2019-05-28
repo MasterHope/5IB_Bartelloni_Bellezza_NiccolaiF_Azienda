@@ -22,7 +22,7 @@
 					<li><a href="Login.php">Login</a></li>
 					<?php } else {
 					?>
-					<li><a href="#"><?php print($_SESSION['utente']); ?></a></li>
+					<li><a href="#"><b><?php print($_SESSION['utente']); ?></b></a></li>
 					<li><a href="Logout.php"</li>Logout</a></li>
 <?php } ?>
 			    </ul>
