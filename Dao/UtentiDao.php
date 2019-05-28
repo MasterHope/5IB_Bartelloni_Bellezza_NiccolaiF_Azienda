@@ -33,6 +33,19 @@ class UtentiDao extends Dao {
         }
     }
 
+    public function findAll(){
+        $sql = "select * from Utenti ";
+        $con = parent::getConnection();
+        $result = $con->query($sql);
+	$lista=array();
+	while($row=$result->fetch_array()){
+		$utente=new Utente($row['codice_utente'], $row['username'], $row['password'], $row['id_ruolo']);
+		$lista[]=$utente;
+	}
+        parent::closeConnection($con);
+        return $lista;
+    }
+
     /**
      *  Metodo per sapere se un utente esiste 
      * @param type $utente Utente interessato
