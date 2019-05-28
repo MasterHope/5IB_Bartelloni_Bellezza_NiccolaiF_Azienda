@@ -23,6 +23,7 @@ $acquisti = $daoAcquisti->findAll();
         <?php include_once 'head.php'; ?>
         <script>
             function isDataCorrect() {
+                var result=true;
                 var data_spedizione = document.getElementById("data_spedizione").value;
                 var data_ordine = document.getElementById("data_ordine").value;
                 var d_spedizione = new Date(data_spedizione);
@@ -30,10 +31,10 @@ $acquisti = $daoAcquisti->findAll();
                 var rSped = d_spedizione.getTime();
                 var rOrdine = d_ordine.getTime();
                 if (rSped <= rOrdine) {
-                    return false;
-                } else {
-                    return true;
+                    window.alert("La data della spedizione deve essere maggiore della data dell'ordine!");
+                    result=false;
                 }
+                return result;
             }
             function loadDoc() {
                 var xhttp = new XMLHttpRequest();
@@ -83,7 +84,7 @@ $acquisti = $daoAcquisti->findAll();
 
                     </div>
                     <div class='container' style='margin-left:50px;'> 
-                        <form action='Pagina.php' name='aggiorna' method='POST' onsubmit='return isDataCorrect()'> 
+                        <form action='Pagina.php' name='aggiorna' method='POST' onsubmit="return isDataCorrect()"> 
                             <label style='color: black;'>Modifica Data di Spedizione</label>
                             <input type='date' name='data_spedizione' id='data_spedizione' value=''> 
                             <input type='hidden' id='data_ordine' value=''>              
