@@ -126,6 +126,11 @@ class Acquisto {
     function getCodice_prodotto() {
         return $this->codice_prodotto;
     }
-
+    
+    public function __toString() {
+        return $this->codice_acquisto .";" . $this->codice_prodotto
+                .";". $this->codice_utente . ";" . $this->data_ordine
+                .";" .$this->data_spedizione . ";" . $this->importo .";".$this->quantita;
+    }
 
 }
