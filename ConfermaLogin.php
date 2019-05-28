@@ -10,7 +10,7 @@ if($utenti->checkLogin($user,$password)){
         session_start();
 	$_SESSION['utente']=$user;
 	$_SESSION['password']=md5($password);
-
+        header("Location:index.php");
 }else{
 	header("Location:Login.php?error=true");
 	die;

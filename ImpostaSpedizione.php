@@ -3,6 +3,7 @@ require_once'session.php';
 require_once'Dao/AcquistiDao.php';
 require_once'Dao/UtentiDao.php';
 require_once'bean/Acquisto.php';
+require_once'ModificaSpedizione.php';
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -51,8 +52,11 @@ $acquisti = $daoAcquisti->findAll();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         document.getElementById("ordine").innerHTML =
-                                "<table border='1' cellspacing='10' cellpadding='10'><tr><td>Data Ordine</td><td>Data Spedizione</td><td>Quantità</td><td>Importo</td></tr>" +
-                                "<tr><td>" + elementi[3] + "</td>" + "<td>" + elementi[4] + "</td>" + "<td>" + elementi[6] + "</td>" + "<td>" + elementi[5] + "</td>" +
+                                "<table border='1' cellspacing='10' cellpadding='10'>"+
+                        "<tr><td>Data Ordine</td><td>Data Spedizione</td><td>Quantità</td><td>Importo</td></tr>" +
+                                "<tr><td>" + elementi[3] + "</td>" + "<td>" 
+                                + elementi[4] + "</td>" + "<td>" + elementi[6] 
+                                + "</td>" + "<td>" + elementi[5] + "</td>" +
                                 "</tr></table><br><br>";
 
                         document.getElementById('data_spedizione').value = elementi[4];
@@ -98,7 +102,7 @@ $acquisti = $daoAcquisti->findAll();
 
                     </div>
                     <div class='container' style='margin-left:50px;'> 
-                        <form action='Pagina.php' name='aggiorna' method='POST' onsubmit="return isDataCorrect()"> 
+                        <form action='' name='aggiorna' method='POST' onsubmit="return isDataCorrect()"> 
                             <label style='color: black;'>Modifica Data di Spedizione</label>
                             <input type='date' name='data_spedizione' id='data_spedizione' value=''> 
                             <input type='hidden' id='data_ordine' value=''>              
