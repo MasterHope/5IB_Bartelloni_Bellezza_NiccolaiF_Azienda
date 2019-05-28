@@ -22,56 +22,97 @@ $acquisti = $daoAcquisti->findAll();
         <title>Bartelloni-Bellezza-Niccolai Azienda</title>
         <?php include_once 'head.php'; ?>
         <script>
+            function isDataCorrect() {
+                var result = true;
+                var data_spedizione = document.getElementById("data_spedizione").value;
+                var data_ordine = document.getElementById("data_ordine").value;
+                var d_spedizione = new Date(data_spedizione);
+                var d_ordine = new Date(data_ordine);
+                var rSped = d_spedizione.getTime();
+                var rOrdine = d_ordine.getTime();
+                if (rSped <= rOrdine) {
+                    displayError();
+                    result = false;
+                } else{
+                    hideError();
+                }
+                return result;
+            }
+            function displayError() {
+                document.getElementById('errore').style.visibility="visible";
+            }
+            function hideError(){
+                document.getElementById('errore').style.visibility="hidden";
+            }
             function loadDoc() {
-   var xhttp = new XMLHttpRequest();
-   var acquisto=document.getElementById("codice").value;
-   var elementi=acquisto.split(";");
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("ordine").innerHTML =
-      "<table border='1' cellspacing='10' cellpadding='10'><tr><td>Data Ordine</td><td>Data Spedizione</td><td>Quantità</td><td>Importo</td></tr>"+
-      "<tr><td>" + elementi[3]+"</td>" + "<td>" + elementi[4]+"</td>" +"<td>" + elementi[6]+"</td>" +"<td>" + elementi[5]+"</td>"+
-      "</tr></table>"
-      }
-  };
-  xhttp.open("GET", "ImpostaSpedizione.php", true);
-  xhttp.send();
-}
-</script>
+                var xhttp = new XMLHttpRequest();
+                var acquisto = document.getElementById("codice").value;
+                var elementi = acquisto.split(";");
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("ordine").innerHTML =
+                                "<table border='1' cellspacing='10' cellpadding='10'><tr><td>Data Ordine</td><td>Data Spedizione</td><td>Quantità</td><td>Importo</td></tr>" +
+                                "<tr><td>" + elementi[3] + "</td>" + "<td>" + elementi[4] + "</td>" + "<td>" + elementi[6] + "</td>" + "<td>" + elementi[5] + "</td>" +
+                                "</tr></table><br><br>";
+
+                        document.getElementById('data_spedizione').value = elementi[4];
+                        document.getElementById('code').value = elementi[0];
+                        document.getElementById('data_ordine').value = elementi[3];
+                    }
+                };
+                xhttp.open("POST", "ImpostaSpedizione.php", true);
+                xhttp.send();
+            }
+        </script>
     </head>
     <body>
+        
+                    <div style="z-index: 1000;visibility: hidden;" id="errore">
+                        <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">
+                                La data di spedizione deve essere maggiore della data dell'ordine!</h6></div>
+                    </div>
         <div class="super_container" style="margin-top: 150px;">
-        <?php include_once 'header.php'; ?>
+            <?php include_once 'header.php'; ?>
             <div class='container' style='margin-left: 50px;'>
-                    <?php if ($idruolo == 4) { ?>
+                <?php if ($idruolo == 4) { ?>
                     <h1>Acquisti</h1>        
                     <select name="codice_spedizione" id='codice'>
                         <option selected="selected">--- Seleziona Codice Acquisto ---</option>
-                        <?php foreach ($acquisti as $acquisto) {
+                        <?php
+                        foreach ($acquisti as $acquisto) {
                             $codice = $acquisto->getCodice_acquisto()
                             ?>
-                        
+
                             <option value="<?php echo($acquisto); ?>" onclick="loadDoc();">
 
-        <?php echo($codice); ?>
+                                <?php echo($codice); ?>
                             </option>
-                            
 
-    <?php } ?>
+
+                        <?php } ?>
                     </select> 
-                    
+
                 </div>
                 <div>
-                    <div class='container' id="ordine" style="margin-top: 50px">
-                        	
-                </div>
-            <?php } else {
-                ?> 
-                <div style="z-index: 1000;">
-                    <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Operazione non permessa!</h6></div>
-                </div>
-            <?php } ?>  
-<?php include_once 'footer.php'; ?>
-        </div>
+                    <div class='container' id="ordine" style="margin-top: 50px;margin-left:50px;color: black;">
+
+                    </div>
+                    <div class='container' style='margin-left:50px;'> 
+                        <form action='Pagina.php' name='aggiorna' method='POST' onsubmit="return isDataCorrect()"> 
+                            <label style='color: black;'>Modifica Data di Spedizione</label>
+                            <input type='date' name='data_spedizione' id='data_spedizione' value=''> 
+                            <input type='hidden' id='data_ordine' value=''>              
+                            <input type='hidden' name='codice' id='code' value=''><br> 
+                            <input type='submit' value='Aggiorna Data Spedizione'> 
+                        </form> 
+                    </div> 
+                <?php } else {
+                    ?> 
+                    <div style="z-index: 1000;">
+                        <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Operazione non permessa!</h6></div>
+                    </div>
+                <?php } ?>  
+                <?php include_once 'footer.php'; ?>
+            </div>
     </body>
 </html>
