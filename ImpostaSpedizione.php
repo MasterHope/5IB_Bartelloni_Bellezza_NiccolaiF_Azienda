@@ -44,7 +44,7 @@ $acquisti = $daoAcquisti->findAll();
                         document.getElementById("ordine").innerHTML =
                                 "<table border='1' cellspacing='10' cellpadding='10'><tr><td>Data Ordine</td><td>Data Spedizione</td><td>Quantità</td><td>Importo</td></tr>" +
                                 "<tr><td>" + elementi[3] + "</td>" + "<td>" + elementi[4] + "</td>" + "<td>" + elementi[6] + "</td>" + "<td>" + elementi[5] + "</td>" +
-                                "</tr></table>"
+                                "</tr></table><br><br>";
                     }
                     document.getElementById('data_spedizione').value = elementi[4];
                     document.getElementById('code').value = elementi[0];
@@ -79,12 +79,12 @@ $acquisti = $daoAcquisti->findAll();
 
                 </div>
                 <div>
-                    <div class='container' id="ordine" style="margin-top: 50px;margin-left:50px;">
+                    <div class='container' id="ordine" style="margin-top: 50px;margin-left:50px;color: black;">
 
                     </div>
                     <div class='container' style='margin-left:50px;'> 
                         <form action='Pagina.php' name='aggiorna' method='POST' onsubmit='return isDataCorrect()'> 
-                            <label>Modifica Data di Spedizione</label>" 
+                            <label style='color: black;'>Modifica Data di Spedizione</label>
                             <input type='date' name='data_spedizione' id='data_spedizione' value=''> 
                             <input type='hidden' id='data_ordine' value=''>              
                             <input type='hidden' name='codice' id='code' value=''><br> 
