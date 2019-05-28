@@ -22,6 +22,19 @@ $acquisti = $daoAcquisti->findAll();
         <title>Bartelloni-Bellezza-Niccolai Azienda</title>
         <?php include_once 'head.php'; ?>
         <script>
+            function isDataCorrect(){ 
+                var data_spedizione=document.getElementById("data_spedizione").value; 
+                var data_ordine=document.getElementById("data_ordine").value; 
+                var d_spedizione=new Date(data_spedizione); 
+                var d_ordine=new Date(data_ordine); 
+                var rSped=d_spedizione.getTime(); 
+                var rOrdine=d_ordine.getTime(); 
+                if(rSped<=rOrdine){ 
+                    return false; 
+                } else { 
+                    return true;     
+                } 
+            } 
             function loadDoc() {
    var xhttp = new XMLHttpRequest();
    var acquisto=document.getElementById("codice").value;
@@ -33,8 +46,11 @@ $acquisti = $daoAcquisti->findAll();
       "<tr><td>" + elementi[3]+"</td>" + "<td>" + elementi[4]+"</td>" +"<td>" + elementi[6]+"</td>" +"<td>" + elementi[5]+"</td>"+
       "</tr></table>"
       }
+       document.getElementById('data_spedizione').value = elementi[4]; 
+                    document.getElementById('code').value = elementi[0]; 
+                    document.getElementById('data_ordine').value = elementi[3]; 
   };
-  xhttp.open("GET", "ImpostaSpedizione.php", true);
+  xhttp.open("POST", "ImpostaSpedizione.php", true);
   xhttp.send();
 }
 </script>
@@ -62,9 +78,18 @@ $acquisti = $daoAcquisti->findAll();
                     
                 </div>
                 <div>
-                    <div class='container' id="ordine" style="margin-top: 50px">
+                    <div class='container' id="ordine" style="margin-top: 50px;margin-left:50px;">
                         	
                 </div>
+                    <div class='container' style='margin-left:50px;'> 
+                        <form action='Pagina.php' name='aggiorna' method='POST' onsubmit='return isDataCorrect()'> 
+                            <label>Modifica Data di Spedizione</label>" 
+                            <input type='date' name='data_spedizione' id='data_spedizione' value=''> 
+                            <input type='hidden' id='data_ordine' value=''>              
+                            <input type='hidden' name='codice' id='code' value=''><br> 
+                            <input type='submit' value='Aggiorna Data Spedizione'> 
+                        </form> 
+                    </div> 
             <?php } else {
                 ?> 
                 <div style="z-index: 1000;">
