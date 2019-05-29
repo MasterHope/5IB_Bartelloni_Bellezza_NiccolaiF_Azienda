@@ -81,11 +81,12 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
             <?php } else { if($ok==false){?>
         <div style="z-index: 1000;">
             <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Errore nell'inserimento, riprovare!</h6></div></div>
-            <?php } else { if($ok<-1){ ?>
+            <?php } else { if($ok<=-1){ ?>
              <div style="z-index: 1000;">
             <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Prodotti non sufficienti nel magazzino!</h6></div></div>
             <?php }}} ?>
         <?php }  ?>
+          
             
 </div>
 
