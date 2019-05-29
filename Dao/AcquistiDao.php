@@ -2,6 +2,7 @@
 
 require_once ("Dao.php");
 require_once("ProdottiDao.php");
+
 /**
  * Classe utilizzata per la gestione dei dati inerenti agli acquisti.
  *
@@ -37,8 +38,9 @@ class AcquistiDao extends Dao {
     /**
      * Metodo utilizzato per aggiungere un ordine al database.
      * @param Acquisto $ordine Ordine del cliente.
-     * @return int 0 se la quantità non è stata aggiornata, -1 se la query
-     * non è stata eseguita, 1 se è stata eseguita correttamente.
+     * @return int 0 se la quantità non è stata aggiornata, -number se la query
+     * ha prodotto risultati negativi, 1 se è stata eseguita correttamente.
+     * Ritorna false se la query non viene eseguita correttamente.
      */
     function aggiungiSpedizione($ordine) {
         $ok = 1;
@@ -48,19 +50,21 @@ class AcquistiDao extends Dao {
         $codice_prodotto = $ordine->getCodice_prodotto();
         $codice_utente = $ordine->getCodice_utente();
         $importo = (double) $ordine->getImporto();
-        $sql = "insert into Acquisti values(null,'$data_ordine'"
-                . ",'$data_spedizione',$quantita,'$codice_prodotto','$codice_utente',$importo)";
-        $connection = parent::getConnection();
-        if (!$this->exists($ordine)) {
-            if (!$connection->query($sql)) {
-                $ok = -1;
+        $prodottiDao = new ProdottiDao();
+        $ok = $prodottiDao->aggiornaQuantitaProdotto($codice_prodotto, $quantita);
+        if ($ok == 1) {
+            $sql = "insert into Acquisti values(null,'$data_ordine'"
+                    . ",'$data_spedizione',$quantita,'$codice_prodotto','$codice_utente',$importo)";
+            $connection = parent::getConnection();
+            if (!$this->exists($ordine)) {
+                if (!$connection->query($sql)) {
+                    $ok = false;
+                }
+            } else {
+                $ok = 0;
             }
-        } else {
-            $ok = 0;
+            $connection->close();
         }
-        $connection->close();
-        $prodottiDao=new ProdottiDao();
-        $ok=$prodottiDao->aggiornaQuantitaProdotto($codice_prodotto, $quantita);
         return $ok;
     }
 
@@ -84,7 +88,6 @@ class AcquistiDao extends Dao {
         $connection->close();
         return $exist;
     }
-
 
     /**
      * Metodo che ritorna tutti gli acquisti.
