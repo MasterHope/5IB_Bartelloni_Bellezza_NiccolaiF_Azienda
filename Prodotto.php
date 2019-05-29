@@ -1,5 +1,6 @@
 <?php
-require_once 'session.php';
+require_once'session.php';
+require_once'isCliente.php';
 require_once 'Dao/ProdottiDao.php';
 require_once 'bean/Prodotto.php';
 if (isset($_GET['prodotto'])) {

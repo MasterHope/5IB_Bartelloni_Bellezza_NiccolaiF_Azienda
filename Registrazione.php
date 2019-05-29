@@ -7,8 +7,8 @@
     </head>
     <body>
 	    <?php include_once 'header.php'; ?>
-
-	<form action="ConfermaRegistrazione.php" method="POST">
+<?php include 'ConfermaRegistrazione.php';?>
+	<form action="" method="POST">
 	    <div class="container">
 		<div class="row align-items-center" style="margin-top: 150px">
 		    <h1>Registrati</h1>
@@ -23,31 +23,37 @@
 			<input type="password" name="password" value="" required="true"/>
 		    </div>
 		</div>
-<!--		<div class="row align-items-center" style="margin-top: 20px;margin-bottom: 10px">
-		    <h2>Ruoli</h2><br>
-		</div>-->
-<!--		<div class="row align-items-center" style="margin-top: 20px;margin-bottom: 10px">
-		    <div class="col-md-2">
-			<input type="radio" name="ruolo" value="cliente" checked="checked" />
-			Cliente
-		    </div>
-		    <div class="col-md-2">
-			<input type="radio" name="ruolo" value="marketing"  />
-			Responsabile Marketing
-		    </div>
-		    <div class="col-md-2">
-			<input type="radio" name="ruolo" value="responsabile-clienti"  />
-			Responsabile Clienti
-		    </div>
-		    <div class="col-md-2">
-			Responsabile Spedizioni
-			<input type="radio" name="ruolo" value="responsabile-spedizioni"  />
-		    </div>
-		    <div class="col-md-2">
-			Responsabile del Magazzino
-			<input type="radio" name="ruolo" value="responsabile-magazzino"  />
-		    </div>
-		</div>-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Nome</h3>
+                        <input type="text" name="nome" value="" required/>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Cognome</h3>
+                        <input type="text" name="cognome" value="" required/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Indirizzo</h3>
+                        <input type="text" name="indirizzo" value="" required/>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Città</h3>
+                        <input type="text" name="citta" value="" required/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Cellulare</h3>
+                        <input type="text" name="telefono" pattern="\d{10}" value="" required/>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>CAP</h3>
+                        <input type="text" name="cap" value="" pattern="\d{5}" required/>
+                    </div>
+                </div>
+                
 
 <input type="submit" style="margin-top: 10px" />
 	    </div>
