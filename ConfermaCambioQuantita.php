@@ -16,10 +16,10 @@ if (!isset($_REQUEST['quantita']) || !isset($_REQUEST['codice'])) {
 	//ERRORE
 }
 
-$codice = $_REQUEST['codice'];
+$codice_prodotto = $_REQUEST['codice'];
 $quantita = $_REQUEST['quantita'];
 $dao = new ProdottiDao();
-if ($dao->aggiornaQuantita($codice, $quantita)) {
+if ($dao->aggiornaQuantita($codice_prodotto, $quantita)) {
 	?><div style="margin-top:150px">Quantita aggiornata</div><?php
 }
 ?>

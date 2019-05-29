@@ -1,10 +1,10 @@
 <?php
 require_once"Dao/AcquistiDao.php";
 if(isset($_POST['codice']) && isset($_POST['data_spedizione'])){
-    $codice=$_POST['codice'];
+    $codice_prodotto=$_POST['codice'];
     $data_spedizione=$_POST['data_spedizione'];
     $acquistiDao=new AcquistiDao();
-    $ok=$acquistiDao->modificaSpedizione($codice, $data_spedizione);
+    $ok=$acquistiDao->modificaSpedizione($codice_prodotto, $data_spedizione);
 } else {
     $ok=-2;
     //-2=utente non ha ancora settato il codice e la data di spedizione!

@@ -84,12 +84,12 @@ $acquisti = $daoAcquisti->findAll();
                         <option selected="selected">--- Seleziona Codice Acquisto ---</option>
                         <?php
                         foreach ($acquisti as $acquisto) {
-                            $codice = $acquisto->getCodice_acquisto()
+                            $codice_prodotto = $acquisto->getCodice_acquisto()
                             ?>
 
                             <option value="<?php echo($acquisto); ?>" onclick="loadDoc();">
 
-                                <?php echo($codice); ?>
+                                <?php echo($codice_prodotto); ?>
                             </option>
 
 
