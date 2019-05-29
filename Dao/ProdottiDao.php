@@ -43,7 +43,7 @@ class ProdottiDao extends Dao {
         $ok = 1;
         $sql = "insert into Prodotti values(?,?,?,?,?)";
         $connection = parent::getConnection();
-        $st=null;
+        $st = null;
         if (!$this->exists($prodotto)) {
             $st = $connection->prepare($sql);
             $codice_prodotto = $prodotto->getCodice_prodotto();
@@ -62,49 +62,50 @@ class ProdottiDao extends Dao {
         $connection->close();
         return $ok;
     }
+
     /**
      * Metodo utilizzato per verificare se il prodotto esiste o meno nel database. 
      * Ritorna bool True se esiste, false altrimenti.
      */
-    function exists($prodotto){
-        $exist=true;
-        $sql="select * from Prodotti where codice_prodotto=?";
-        $connection=parent::getConnection();
-        $st=$connection->prepare($sql);
-        $codice_prodotto=$prodotto->getCodice_prodotto();
+    function exists($prodotto) {
+        $exist = true;
+        $sql = "select * from Prodotti where codice_prodotto=?";
+        $connection = parent::getConnection();
+        $st = $connection->prepare($sql);
+        $codice_prodotto = $prodotto->getCodice_prodotto();
         $st->bind_param("s", $codice_prodotto);
-        $result=$st->execute();
-        $rows=$st->num_rows;
-        if($rows==0){
-            $exist=false;
+        $result = $st->execute();
+        $rows = $st->num_rows;
+        if ($rows == 0) {
+            $exist = false;
         }
         $st->close();
         $connection->close();
         return $exist;
     }
+
     /**
      * Metodo che ritorna il prodotto con rispettivo codice che viene passato come parametro.
      * @param string $codice Codice relativo al prodotto
      * @return Prodotto Prodotto con relativo codice, null se il prodotto non viene trovato.
      */
-    function getProdotto($codice){
-        $prodotto=null;
-        $sql="select * from Prodotti where codice_prodotto='$codice'";
-        $connection=parent::getConnection();
-        $result=$connection->query($sql);
-        if($result->num_rows!=0){
-            $row=$result->fetch_array();
-            $denominazione=$row['denominazione'];
-            $prezzo=$row['prezzo'];
-            $quantita=$row['quantita'];
-            $descrizione=$row['descrizione'];
-            $prodotto=new Prodotto($codice, $denominazione, $descrizione, $prezzo, $quantita);
+    function getProdotto($codice) {
+        $prodotto = null;
+        $sql = "select * from Prodotti where codice_prodotto='$codice'";
+        $connection = parent::getConnection();
+        $result = $connection->query($sql);
+        if ($result->num_rows != 0) {
+            $row = $result->fetch_array();
+            $denominazione = $row['denominazione'];
+            $prezzo = $row['prezzo'];
+            $quantita = $row['quantita'];
+            $descrizione = $row['descrizione'];
+            $prodotto = new Prodotto($codice, $denominazione, $descrizione, $prezzo, $quantita);
         }
         parent::closeConnection($connection);
         return $prodotto;
     }
-    
-    
+
     /**
      * Metodo che aggiorna la quantità dei prodotti disponibili in magazzino.
      * @param string $codice_prodotto Codice del prodotto.
@@ -112,14 +113,29 @@ class ProdottiDao extends Dao {
      * @return bool True se il prodotto è stato aggiornato, false altrimenti.
      */
     public function aggiornaQuantitaProdotto($codice_prodotto, $quantita) {
+        $nuovaQuantita = $this->getQuantita($codice_prodotto, $quantita);
         $ok = true;
-        $sql = "update Prodotti set quantita=quantita - ? where codice_prodotto=?";
-        $connection = parent::getConnection();
-        $st = $connection->prepare($sql);
-        $st->bind_param("is", $quantita, $codice_prodotto);
-        if (!$st->execute()) {
-            $ok = false;
+        if ($nuovaQuantita >= 0) {
+            $sql = "update Prodotti set quantita=quantita - ? where codice_prodotto=?";
+            $connection = parent::getConnection();
+            $st = $connection->prepare($sql);
+            $st->bind_param("is", $quantita, $codice_prodotto);
+            if (!$st->execute()) {
+                $ok = false;
+            }
+        } else {
+            $ok = -1;
         }
         return $ok;
     }
+
+    public function getQuantita($codice_prodotto, $quantita) {
+        $sql = "select quantita from Prodotti where codice_prodotto='$codice_prodotto'";
+        $conn = parent::getConnection();
+        $result = $conn->query($sql);
+        $row = $result->fetch_array();
+        $quant = $row['quantita'];
+        return $quantita - $quant;
+    }
+
 }

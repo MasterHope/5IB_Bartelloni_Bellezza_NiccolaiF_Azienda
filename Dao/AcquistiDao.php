@@ -60,7 +60,7 @@ class AcquistiDao extends Dao {
         }
         $connection->close();
         $prodottiDao=new ProdottiDao();
-        $prodottiDao->aggiornaQuantitaProdotto($codice_prodotto, $quantita);
+        $ok=$prodottiDao->aggiornaQuantitaProdotto($codice_prodotto, $quantita);
         return $ok;
     }
 
