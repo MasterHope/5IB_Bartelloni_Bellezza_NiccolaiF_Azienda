@@ -34,30 +34,6 @@ class ProdottiDao extends Dao {
     }
 
     /**
-     * Metodo per l'aggiornamento della quantità dei prodotti.
-     * @param int $quantita Quantità dei prodotti nuova del database.
-     * @return int 0 se la quantità non è stata aggiornata, -1 se la query
-     * non è stata eseguita, 1 se è stata eseguita correttamente.
-     */
-    function aggiornaQuantita($codice, $quantita) {
-        $ok = 1;
-        $sql = "update Prodotti set quantita=? where codice_prodotto=?";
-        $connection = parent::getConnection();
-        $st = $connection->prepare($sql);
-        $st->bind_param("is", $quantita, $codice);
-        if (!$st->execute()) {
-            $ok = -1;
-        } else {
-            if ($st->affected_rows == 0) {
-                $ok = 0;
-            }
-        }
-        $st->close();
-        $connection->close();
-        return $ok;
-    }
-
-    /**
      * Metodo utilizzato per inserire un nuovo prodotto.
      * @param Prodotto $prodotto prodotto Inserito nel database
      * @return int 0 se la quantità non è stata aggiornata, -1 se la query
@@ -126,5 +102,24 @@ class ProdottiDao extends Dao {
         }
         parent::closeConnection($connection);
         return $prodotto;
+    }
+    
+    
+    /**
+     * Metodo che aggiorna la quantità dei prodotti disponibili in magazzino.
+     * @param string $codice_prodotto Codice del prodotto.
+     * @param int $quantita Quantita da rimuovere dal magazzino.
+     * @return bool True se il prodotto è stato aggiornato, false altrimenti.
+     */
+    public function aggiornaQuantitaProdotto($codice_prodotto, $quantita) {
+        $ok = true;
+        $sql = "update Prodotti set quantita=quantita - ? where codice_prodotto=?";
+        $connection = parent::getConnection();
+        $st = $connection->prepare($sql);
+        $st->bind_param("is", $quantita, $codice_prodotto);
+        if (!$st->execute()) {
+            $ok = false;
+        }
+        return $ok;
     }
 }

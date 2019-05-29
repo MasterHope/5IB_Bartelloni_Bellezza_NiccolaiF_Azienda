@@ -69,8 +69,6 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
                                 
                             <div class="description_text">
                                 <?php print($prodotto->getDescrizione()); ?>
-                                
-<?php echo($ok);?>
                             </div>
                         </div>
                     </div>
