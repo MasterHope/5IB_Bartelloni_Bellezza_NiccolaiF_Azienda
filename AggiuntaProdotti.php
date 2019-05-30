@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 include_once "session.php";
+include_once'isResponsabileMarketing.php';
 require_once 'Dao/UtentiDao.php';
 require_once 'Dao/ProdottiDao.php';
 require_once 'bean/Prodotto.php';

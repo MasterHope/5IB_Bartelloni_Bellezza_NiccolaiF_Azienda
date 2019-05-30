@@ -1,5 +1,6 @@
 <?php
 include_once "session.php";
+include_once"isResponsabileClienti.php";
 require_once 'Dao/UtentiDao.php';
 require_once 'Dao/AcquistiDao.php';
 require_once 'bean/Acquisto.php';
@@ -9,12 +10,6 @@ require_once 'Dao/ProdottiDao.php';
 
 $dao = new UtentiDao();
 $ruolo = $dao->getRuolo(md5($_SESSION['utente']));
-//DA CAMBIARE
-if (!$ruolo == "responsabile-marketing") {
-	header("Location:index.php");
-	die;
-}
-
 $dao = new ProdottiDao();
 $prodotti = $dao->findAll();
 $dao=new UtentiDao();
