@@ -4,7 +4,7 @@ require_once"Dao/UtentiDao.php";
 $utentiDao=new UtentiDao();
 $utente=$_SESSION['utente'];
 $ruolo=$utentiDao->getRuolo(md5($utente));
-if($ruolo=="marketing"){
+if($ruolo=="responsabile-marketing"){
     $ok=true;
 } else {
     $ok=false;
