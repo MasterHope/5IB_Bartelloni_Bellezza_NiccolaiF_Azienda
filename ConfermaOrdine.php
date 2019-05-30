@@ -25,6 +25,8 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
         $ordine = new Acquisto($data_ordine, $data_spedizionedef, $quantita, $codice_prodotto, $codice_utente, $importo);
         $ok=$daoAcquisti->aggiungiSpedizione($ordine);
     } 
+} else {
+    $ok=false;
 }
 ?>
 
@@ -45,8 +47,7 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
         <link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
     </head>
     <body>
-        
-            <?php include_once 'header.php'; ?>
+        <?php include_once'header.php' ?>
         <?php
         if($ok>=1){
         ?>
@@ -73,19 +74,14 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
                     </div>
                 </div>
             </div>
-        <?php }else{
-            if(!true){//controllo cliente da inserire!
-                ?><div style="z-index: 1000;">
-        <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Devi essere un cliente per ordinare!</h6></div>
-                </div>
-            <?php } else { if($ok==false){?>
+        <?php }else{ ?>
+            <?php if($ok==false){?>
         <div style="z-index: 1000;">
             <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Errore nell'inserimento, riprovare!</h6></div></div>
             <?php } else { if($ok<=-1){ ?>
              <div style="z-index: 1000;">
             <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Prodotti non sufficienti nel magazzino!</h6></div></div>
             <?php }}} ?>
-        <?php }  ?>
           
             
 </div>
