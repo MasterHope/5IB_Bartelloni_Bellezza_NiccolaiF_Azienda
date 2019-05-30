@@ -5,13 +5,13 @@ include_once 'Dao/AcquistiDao.php';
 
 
 
-$dataOrdine=$_REQUEST['data-ordine'];
+$dataOrdine= filter_input(INPUT_POST, "data-ordine",FILTER_SANITIZE_STRING);
 $data_spedizione= strtotime ( '+1 week' , strtotime ( $data_ordine ) ) ;
 $data_spedizionedef=date("Y-m-d", $data_spedizione);
-$quantita=$_REQUEST['quantita'];
-$importo=$_REQUEST['importo'];
-$codiceProdotto=$_REQUEST['prodotto'];
-$codiceCliente=$_REQUEST['cliente'];
+$quantita= filter_input(INPUT_POST, "quantita", FILTER_SANITIZE_NUMBER_INT);
+$importo=filter_input(INPUT_POST, "importo", FILTER_SANITIZE_NUMBER_FLOAT);;
+$codiceProdotto=filter_input(INPUT_POST, "prodotto", FILTER_SANITIZE_STRING);
+$codiceCliente=filter_input(INPUT_POST, "cliente", FILTER_SANITIZE_STRING);
 $acquisto=new Acqiosto($dataOrdine,$data_spedizione,$quantita,$codiceProdotto,$codiceUtente,$importo);
 
 $dao=new AcquistiDao();
