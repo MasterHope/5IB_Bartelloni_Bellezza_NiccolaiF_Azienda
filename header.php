@@ -29,7 +29,7 @@ if(isset($_SESSION['utente'])){
 
 	}
 	if ($ruolo == "responsabile-magazzino") {
-		?><li><a href="CambioQuantitaProdotto.php">Aggiungi Prodotti</a></li>	<?php
+		?><li><a href="Magazzino.php">Aggiungi Prodotti</a></li>	<?php
 
 	}
 	if ($ruolo == "responsabile-spedizioni") {
