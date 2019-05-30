@@ -12,7 +12,7 @@ $codice_utente = md5($utente);
 $utentiDao = new UtentiDao();
 $acquistiDao = new AcquistiDao();
 $ruolo = $utentiDao->getRuolo($codice_utente);
-$ruoli = array("cliente" => 1, "marketing" => 2, "responsabile-clienti" => 3, "responsabile-spedizioni" => 4, "responsabile-magazzino" => 5);
+$ruoli = array("cliente" => 1, "responsabile-marketing" => 2, "responsabile-clienti" => 3, "responsabile-spedizioni" => 4, "responsabile-magazzino" => 5);
 $idruolo = $ruoli["$ruolo"];
 $daoAcquisti = new AcquistiDao();
 $acquisti = $daoAcquisti->findAll();

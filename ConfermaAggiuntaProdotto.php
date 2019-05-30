@@ -12,10 +12,10 @@ if (!$ruolo == "responsabile-marketing") {
 	die;
 }
 
-$denominazione = $_REQUEST["denominazione"];
-$prezzo = $_REQUEST["prezzo"];
-$quantita = $_REQUEST["quantita"];
-$descrizione = $_REQUEST["descrizione"];
+$denominazione = filter_input(INPUT_POST,"denominazione",FILTER_SANITIZE_STRING);
+$prezzo = filter_input(INPUT_POST,"prezzo",FILTER_SANITIZE_NUMBER_FLOAT);
+$quantita = filter_input(INPUT_POST,"quantita",FILTER_SANITIZE_NUMBER_INT);
+$descrizione = filter_input(INPUT_POST,"descrizione",FILTER_SANITIZE_STRING);
 $codice_prodotto = md5($denominazione . $prezzo . $quantita . $denominazione);
 $prodotto = new Prodotto($codice_prodotto, $denominazione, $descrizione, $prezzo, $quantita);
 $dao = new ProdottiDao();

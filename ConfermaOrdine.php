@@ -6,8 +6,8 @@ require_once'bean/Acquisto.php';
 require_once'Dao/UtentiDao.php';
 $ok=1;
 if (isset($_POST['quantita']) && isset($_GET['codice'])) {
-    $quantita = $_POST['quantita'];
-    $codice_prodotto = $_GET['codice'];
+    $quantita = filter_input(INPUT_POST,"quantita",FILTER_SANITIZE_NUMBER_INT);
+    $codice_prodotto = filter_input(INPUT_GET,"codice",FILTER_SANITIZE_STRING);
     $daoAcquisti = new AcquistiDao();
     session_start();
     $utente = $_SESSION['utente'];
