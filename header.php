@@ -1,4 +1,11 @@
+<?php
+require_once 'Dao/UtentiDao.php';
+require_once 'Dao/ProdottiDao.php';
+require_once 'bean/Prodotto.php';
 
+$dao = new UtentiDao();
+$ruolo = $dao->getRuolo(md5($_SESSION['utente']));
+?>
 <!-- Header -->
 
 <header class="header">
