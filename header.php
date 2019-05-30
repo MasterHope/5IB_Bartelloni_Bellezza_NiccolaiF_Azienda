@@ -1,10 +1,13 @@
 <?php
+session_start();
 require_once 'Dao/UtentiDao.php';
 require_once 'Dao/ProdottiDao.php';
 require_once 'bean/Prodotto.php';
 
+if(isset($_SESSION['utente'])){
 $dao = new UtentiDao();
 $ruolo = $dao->getRuolo(md5($_SESSION['utente']));
+}
 ?>
 <!-- Header -->
 
