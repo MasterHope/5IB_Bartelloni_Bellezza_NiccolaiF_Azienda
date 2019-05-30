@@ -9,9 +9,10 @@
     <body> 
         <?php include_once 'header.php'; ?>
         
-        <?php if($_GET["error"]){
-            
-        }?>
+        <?php if($_GET["error"]){ ?>
+            <div style="z-index: 1000;">
+            <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Nome Utente o Password errati!</h6></div></div>
+        <?php } ?>
         <form action="ConfermaLogin.php" method="POST">
             <div class="container" style="margin-top: 150px">
                 <h1>Accedi</h1>
