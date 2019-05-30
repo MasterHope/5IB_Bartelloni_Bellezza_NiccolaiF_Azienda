@@ -1,6 +1,6 @@
 <?php
 include_once "session.php";
-include_once"isResponsabileMarketing.php";
+include_once"isResponsabileClienti.php";
 require_once 'Dao/UtentiDao.php';
 require_once 'Dao/AcquistiDao.php';
 require_once 'bean/Acquisto.php';
