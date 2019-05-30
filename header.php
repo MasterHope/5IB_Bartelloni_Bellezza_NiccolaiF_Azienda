@@ -3,8 +3,10 @@ require_once 'Dao/UtentiDao.php';
 require_once 'Dao/ProdottiDao.php';
 require_once 'bean/Prodotto.php';
 
+if(!isset($_SESSION)){
+        session_start();
+}
 if(isset($_SESSION['utente'])){
-session_start();
 	$dao = new UtentiDao();
 	$ruolo = $dao->getRuolo(md5($_SESSION['utente']));
 }
@@ -29,15 +31,15 @@ if(isset($_SESSION['utente'])){
 
 	}
 	if ($ruolo == "responsabile-magazzino") {
-		?><li><a href="Magazzino.php">Aggiungi Prodotti</a></li>	<?php
+		?><li><a href="Magazzino.php">Magazzino</a></li>	<?php
 
 	}
 	if ($ruolo == "responsabile-spedizioni") {
-		?><li><a href="ImpostaSpedizione.php">Aggiungi Prodotti</a></li>	<?php
+		?><li><a href="ImpostaSpedizione.php">Modifica spedizione</a></li>	<?php
 
 	}
 	if ($ruolo == "responsabile-clienti") {
-		?><li><a href="AggiuntaOrdine.php">Aggiungi Prodotti</a></li>	<?php
+		?><li><a href="AggiuntaOrdine.php">Aggiungi ordine</a></li>	<?php
 
 	}
 }
