@@ -7,7 +7,9 @@ require_once 'bean/Acquisto.php';
 require_once 'bean/Prodotto.php';
 require_once 'bean/Utente.php';
 require_once 'Dao/ProdottiDao.php';
-
+if(!isset($_SESSION)){
+    session_start();
+}
 $dao = new UtentiDao();
 $ruolo = $dao->getRuolo(md5($_SESSION['utente']));
 $dao = new ProdottiDao();
