@@ -24,7 +24,7 @@ class UtentiDao extends Dao {
             $codiceUtente = md5($utente);
             $sql = "insert into Utenti values('$codiceUtente', '$utente', '$password', 1)";
             $con->query($sql);
-            if ($con->affected_rows==0) {
+            if ($con->affected_rows == 0) {
                 return false;
             } else {
                 return true;
@@ -33,15 +33,15 @@ class UtentiDao extends Dao {
         }
     }
 
-    public function findAll(){
+    public function findAll() {
         $sql = "select * from Utenti ";
         $con = parent::getConnection();
         $result = $con->query($sql);
-	$lista=array();
-	while($row=$result->fetch_array()){
-		$utente=new Utente($row['codice_utente'], $row['username'], $row['password'], $row['id_ruolo']);
-		$lista[]=$utente;
-	}
+        $lista = array();
+        while ($row = $result->fetch_array()) {
+            $utente = new Utente($row['codice_utente'], $row['username'], $row['password'], $row['id_ruolo']);
+            $lista[] = $utente;
+        }
         parent::closeConnection($con);
         return $lista;
     }
@@ -52,12 +52,12 @@ class UtentiDao extends Dao {
      * @return 
      */
     public function exists($utente) {
-        $ok=true;
+        $ok = true;
         $sql = "select * from Utenti where Utenti.username='$utente'";
         $con = parent::getConnection();
         $result = $con->query($sql);
-        if (!$result || $result->num_rows==0) {
-            $ok=false;
+        if (!$result || $result->num_rows == 0) {
+            $ok = false;
         }
         parent::closeConnection($con);
         return $ok;
@@ -70,17 +70,17 @@ class UtentiDao extends Dao {
      * @return boolean
      */
     public function checkLogin($user, $password) {
-        $ok=false;
+        $ok = false;
         if ($this->exists($user)) {
             $sql = "select * from Utenti where username=" . "'$user'";
             $con = parent::getConnection();
             $result = $con->query($sql);
             $rows = $result->fetch_array();
             $password = md5($password);
-            if ($password == $rows['password']) {
+            if ($password == $rows['password'] && $user == $rows['username']) {
                 $ok = true;
             }
-        parent::closeConnection($con);
+            parent::closeConnection($con);
         }
         return $ok;
     }
@@ -102,21 +102,31 @@ class UtentiDao extends Dao {
         parent::closeConnection($connection);
         return $codice_cliente;
     }
-    
+
     /**
      * Metodo per ottenere il ruolo dell'utente di cui e' fornito il codice
      * @param string $codice_utente
      * @return string contenente il nome del ruolo dell'utente richiesto 
      */
-    public function getRuolo($codice_utente){
-        $ruolo=null;
+    public function getRuolo($codice_utente) {
         $connection = parent::getConnection();
         $sql = "select Ruoli.descrizione from Utenti natural join Ruoli "
                 . "where codice_utente='$codice_utente'";
         $result = $connection->query($sql);
-        if ($result->num_rows != 0) {
-            $row = $result->fetch_array();
-            $ruolo = $row['descrizione'];
+        $row = $result->fetch_assoc();
+        $ruolo = $row['descrizione'];
+        parent::closeConnection($connection);
+        return $ruolo;
+    }
+
+    public function remove($codice_utente) {
+        $ok = false;
+        $connection = parent::getConnection();
+        $sql = "delete from Utenti "
+                . "where codice_utente='$codice_utente'";
+        $result = $connection->query($sql);
+        if (!$connection->errno) {
+            $ok = true;
         }
         parent::closeConnection($connection);
         return $ruolo;

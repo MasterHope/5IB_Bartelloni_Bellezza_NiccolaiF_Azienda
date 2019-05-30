@@ -38,6 +38,7 @@ class ClientiDao extends Dao {
                         , $cognome, $nome, $indirizzo, $citta, $CAP, $telefono);
                 if (!$st->execute()) {
                     $ok = -1;
+                    $utentiDao->remove($codice_utente);
                 }
             } else {
                 $ok = 0;
