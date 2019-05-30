@@ -1,5 +1,5 @@
 <?php
-include_once 'Dao/Acquisto.php';
+include_once 'bean/Acquisto.php';
 include_once 'Dao/AcquistiDao.php';
 
 
@@ -12,9 +12,9 @@ $quantita= filter_input(INPUT_POST, "quantita", FILTER_SANITIZE_NUMBER_INT);
 $importo=filter_input(INPUT_POST, "importo", FILTER_SANITIZE_NUMBER_FLOAT);;
 $codiceProdotto=filter_input(INPUT_POST, "prodotto", FILTER_SANITIZE_STRING);
 $codiceCliente=filter_input(INPUT_POST, "cliente", FILTER_SANITIZE_STRING);
-$acquisto=new Acqiosto($dataOrdine,$data_spedizione,$quantita,$codiceProdotto,$codiceUtente,$importo);
-
+$acquisto=new Acquisto($dataOrdine,$data_spedizione,$quantita,$codiceProdotto,$codiceUtente,$importo);
 $dao=new AcquistiDao();
+$ok=$dao->aggiungiSpedizione($acquisto);
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,12 +26,18 @@ $dao=new AcquistiDao();
 	<body>
 		<?php include_once 'header.php' ?>
 		<div class="container" style="margin-top:150px">
-<?php if ($dao->insert($acquisto)) {
+<?php if ($ok==1) {
 
 
 ?><h1>Ordine Aggiunto Correttamente</h1>
 <?php
-} ?>
+} else {
+    if($ok==-1){?>
+    <div style="z-index: 1000;visibility: hidden;" id="errore">
+                        <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">
+                               Errore nell'aggiunta dell'ordine!</h6></div>
+                    </div>
+<?php }} ?>
 
 		</div>
 
