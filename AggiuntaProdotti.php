@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <?php
 include_once "session.php";
-include_once'isResponsabileMarketing.php';
+require_once'isResponsabileMarketing.php';
 require_once 'Dao/UtentiDao.php';
 require_once 'Dao/ProdottiDao.php';
 require_once 'bean/Prodotto.php';
 
-$dao = new UtentiDao();
-$ruolo = $dao->getRuolo(md5($_SESSION['utente']));
-if (!$ruolo == "responsabile-marketing") {
-	header("Location:index.php");
-	die;
-}
 $prodotti = new ProdottiDao();
 $listaProdotti = $prodotti->findAll();
 ?>

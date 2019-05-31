@@ -4,13 +4,8 @@ include_once "session.php";
 require_once 'Dao/UtentiDao.php';
 require_once 'Dao/ProdottiDao.php';
 require_once 'bean/Prodotto.php';
+require_once 'isResponsabileMarketing.php';
 
-$dao = new UtentiDao();
-$ruolo = $dao->getRuolo(md5($_SESSION['utente']));
-if (!$ruolo == "responsabile-marketing") {
-	header("Location:index.php");
-	die;
-}
 
 $denominazione = filter_input(INPUT_POST,"denominazione",FILTER_SANITIZE_STRING);
 $prezzo = filter_input(INPUT_POST,"prezzo",FILTER_SANITIZE_NUMBER_FLOAT);
