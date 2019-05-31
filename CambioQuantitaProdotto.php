@@ -3,7 +3,7 @@ require_once 'session.php';
 require_once 'Dao/ProdottiDao.php';
 require_once 'bean/Prodotto.php';
 if (isset($_GET['prodotto'])) {
-	$codice_prodotto = $_GET['prodotto'];
+	$codice_prodotto = filter_input(INPUT_GET, "prodotto",FILTER_SANITIZE_STRING);
 	$daoProdotti = new ProdottiDao();
 	$prodotto = $daoProdotti->getProdotto($codice_prodotto);
 }
