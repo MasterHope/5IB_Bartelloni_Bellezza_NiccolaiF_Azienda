@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-dfkjs
 <html lang="en">
     <head>
         <title>Bartelloni-Bellezza-Niccolai Azienda</title>
