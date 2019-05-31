@@ -4,6 +4,7 @@ require_once'Dao/ProdottiDao.php';
 require_once'bean/Prodotto.php';
 require_once'bean/Acquisto.php';
 require_once'Dao/UtentiDao.php';
+require_once'isCliente.php';
 $ok=1;
 if (isset($_POST['quantita']) && isset($_GET['codice'])) {
     $quantita = filter_input(INPUT_POST,"quantita",FILTER_SANITIZE_NUMBER_INT);

@@ -1,5 +1,7 @@
 <?php
 require_once"Dao/AcquistiDao.php";
+require_once"isResponsabileSpedizione.php";
+
 if(isset($_POST['codice']) && isset($_POST['data_spedizione'])){
     $codice_prodotto=$_POST['codice'];
     $data_spedizione=$_POST['data_spedizione'];

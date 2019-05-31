@@ -4,6 +4,7 @@ require_once'Dao/AcquistiDao.php';
 require_once'Dao/UtentiDao.php';
 require_once'bean/Acquisto.php';
 require_once'ModificaSpedizione.php';
+require_once'isResponsabileSpedizione.php';
 if (!isset($_SESSION)) {
     session_start();
 }

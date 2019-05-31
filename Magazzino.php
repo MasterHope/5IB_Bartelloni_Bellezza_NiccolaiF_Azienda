@@ -4,8 +4,7 @@ require_once 'session.php';
 require_once 'bean/Prodotto.php';
 require_once 'Dao/ProdottiDao.php';
 require_once 'Dao/UtentiDao.php';
-$dao = new UtentiDao();
-$ruolo = $dao->getRuolo(md5($_SESSION['utente']));
+require_once 'isResponsabileMagazzino.php';
 $prodottiDao = new ProdottiDao();
 $prodotti = $prodottiDao->findAll();
 ?>
