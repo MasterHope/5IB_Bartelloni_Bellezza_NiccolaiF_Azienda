@@ -1,6 +1,9 @@
 <?php
 //Questo file viene utilizzato per verificare se una determinata persona è un cliente o meno.
 require_once"Dao/UtentiDao.php";
+if(!isset($_SESSION)){
+    session_start();
+}
 $utentiDao=new UtentiDao();
 $utente=$_SESSION['utente'];
 $ruolo=$utentiDao->getRuolo(md5($utente));
