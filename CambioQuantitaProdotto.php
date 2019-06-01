@@ -2,7 +2,7 @@
 require_once 'session.php';
 require_once 'Dao/ProdottiDao.php';
 require_once 'bean/Prodotto.php';
-if (isset($_GET['prodotto'])) {
+if (isset($_REQUEST['prodotto'])) {
 	$codice_prodotto = filter_input(INPUT_GET, "prodotto",FILTER_SANITIZE_STRING);
 	$daoProdotti = new ProdottiDao();
 	$prodotto = $daoProdotti->getProdotto($codice_prodotto);
@@ -29,7 +29,7 @@ if (isset($_GET['prodotto'])) {
 		<?php include_once 'header.php'; ?>
 		<div class="super_container" style="margin-top: 150px">
 			<!-- Product Details -->
-			<form action="ConfermaCambioQuantita.php?codice=<?php echo"$codice_prodotto" ?>" method="POST" name="quant">
+			<form action="ConfermaCambioQuantita.php?codice=<?php echo $codice_prodotto ?>" method="POST" name="quant">
 				<div class="product_details">
 					<div class="container">
 						<div class="row details_row">

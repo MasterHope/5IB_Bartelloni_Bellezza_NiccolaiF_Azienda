@@ -26,7 +26,7 @@ $listaProdotti = $prodotti->findAll();
 		    </div>
 		    <div class="col-md-4">
 			<h3>Prezzo</h3>
-			<input name="prezzo" type="number" min="1"  max="9999" required>
+                        <input name="prezzo" type="number" min="1" step="any"  max="9999" required>
 		    </div>
 		    <div class="col-md-4">
 			<h3>Quantita</h3>
