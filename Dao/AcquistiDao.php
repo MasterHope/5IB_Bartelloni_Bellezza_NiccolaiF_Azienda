@@ -70,7 +70,7 @@ class AcquistiDao extends Dao {
 
     /**
      * Metodo che controlla se l'acquisto esiste nel database.
-     * Ritorna bool True se esiste, false altrimenti.
+     * @return Ritorna bool True se esiste, false altrimenti.
      */
     function exists($ordine) {
         $exist = true;
@@ -91,6 +91,7 @@ class AcquistiDao extends Dao {
 
     /**
      * Metodo che ritorna tutti gli acquisti.
+     * @return lista contente tutti gli acquisti
      */
     public function findAll() {
         $list = array();

@@ -32,10 +32,7 @@ class ClientiDao extends Dao {
                 $codice_cliente = md5($hash);
             if (!$this->exists($codice_cliente)) {
                 $sql = "insert into Clienti values(?,?,?,?,?,?,?,?)";
-                $connection = parent::getConnection();
-                $st = $connection->prepare($sql);
-                $st->bind_param("ssssssss", $codice_cliente, $codice_utente
-                        , $cognome, $nome, $indirizzo, $citta, $CAP, $telefono);
+                $connection = parent::getConnection(); $st = $connection->prepare($sql); $st->bind_param("ssssssss", $codice_cliente, $codice_utente , $cognome, $nome, $indirizzo, $citta, $CAP, $telefono);
                 if (!$st->execute()) {
                     $ok = -1;
                     $utentiDao->remove($codice_utente);
@@ -51,7 +48,7 @@ class ClientiDao extends Dao {
 
     /**
      * Metodo utilizzato per verificare se il cliente esiste o meno nel database. 
-     * Ritorna bool True se esiste, false altrimenti.
+     * @return Ritorna bool True se esiste, false altrimenti.
      */
     function exists($codice_cliente) {
         $exists = true;

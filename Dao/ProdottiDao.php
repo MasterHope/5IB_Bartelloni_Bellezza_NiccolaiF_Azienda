@@ -12,7 +12,7 @@ class ProdottiDao extends Dao {
 
     /**
      * Metodo che ritorna tutti i prodotti presenti nel database.
-     * @return \Prodotto Array di prodotti presenti nella base di dati.
+     * @return Prodotto Array di prodotti presenti nella base di dati.
      */
     function findAll() {
         $prodotti = array();
@@ -65,7 +65,8 @@ class ProdottiDao extends Dao {
 
     /**
      * Metodo utilizzato per verificare se il prodotto esiste o meno nel database. 
-     * Ritorna bool True se esiste, false altrimenti.
+     * @param Prodotto $prodotto prodotto da controllare
+     * @return Ritorna bool True se esiste, false altrimenti.
      */
     function exists($prodotto) {
         $exist = true;
@@ -130,9 +131,9 @@ class ProdottiDao extends Dao {
     }
     /**
      * Metodo che ritorna la quantità di un determinato prodotto.
-     * @param type $codice_prodotto
-     * @param type $quantita
-     * @return type
+     * @param String $codice_prodotto
+     * @param Int $quantita
+     * @return Int la quantità desiderata
      */
     public function getQuantita($codice_prodotto, $quantita) {
         $sql = "select quantita from Prodotti where codice_prodotto='$codice_prodotto'";

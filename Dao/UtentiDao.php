@@ -33,6 +33,10 @@ class UtentiDao extends Dao {
         }
     }
 
+    /**
+     * Funzione per ottenere tutti gli utenti del db
+     * @return un array contente gli utenti
+     */
     public function findAll() {
         $sql = "select * from Utenti ";
         $con = parent::getConnection();
@@ -48,8 +52,8 @@ class UtentiDao extends Dao {
 
     /**
      *  Metodo per sapere se un utente esiste 
-     * @param type $utente Utente interessato
-     * @return 
+     * @param String $utente Utente interessato
+     * @return true se l'utente esiste, false altrimenti
      */
     public function exists($utente) {
         $ok = true;
@@ -65,9 +69,9 @@ class UtentiDao extends Dao {
 
     /**
      * Metodo per controllare la correttezza dell'username e della password immesse
-     * @param type $user
-     * @param type $password
-     * @return boolean
+     * @param String $user l'username dell'utente
+     * @param String $password la password dell'utente
+     * @return boolean ritorna se l'username e la password corrispondono a quelli nel db
      */
     public function checkLogin($user, $password) {
         $ok = false;
