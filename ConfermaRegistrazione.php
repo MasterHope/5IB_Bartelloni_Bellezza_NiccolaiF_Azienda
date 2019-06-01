@@ -22,7 +22,11 @@
             $clientiDao = new ClientiDao();
             $ok = $clientiDao->insert($cliente, $user, $password);
             if ($ok == 1) {
-                ?><center><h1 style="margin-top: 150px">Registrazione Avvenuta Con Successo!!</h1></center><?php
+                ?>
+  <div style="z-index: 1000;" id="errore">
+                        <div class="alert-success"><h6 style="text-align: center;font-family: inherit">
+                               Registrazione avvenuta con successo!</h6></div>
+                    </div> <?php 
             } else {
                 if ($ok == -1) {
                     ?>
