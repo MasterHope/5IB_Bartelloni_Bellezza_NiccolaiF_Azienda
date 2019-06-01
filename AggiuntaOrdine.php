@@ -1,6 +1,5 @@
 <?php
 include_once "session.php";
-include_once"isResponsabileClienti.php";
 require_once 'Dao/UtentiDao.php';
 require_once 'Dao/AcquistiDao.php';
 require_once 'bean/Acquisto.php';
@@ -25,7 +24,7 @@ $clienti=$dao->findAll();
 		<?php include_once 'head.php'; ?>
 	</head>
 	<body>
-	    <?php include_once 'header.php'; ?>
+            <?php include_once 'header.php' ?>
 		<div class="container" style="margin-top: 150px">
 			<h1>Aggiunta Ordine</h1><br><br>
 			<form action="ConfermaAggiuntaOrdine.php" method="POST">

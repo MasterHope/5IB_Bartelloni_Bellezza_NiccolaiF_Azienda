@@ -128,7 +128,12 @@ class ProdottiDao extends Dao {
         }
         return $ok;
     }
-
+    /**
+     * Metodo che ritorna la quantità di un determinato prodotto.
+     * @param type $codice_prodotto
+     * @param type $quantita
+     * @return type
+     */
     public function getQuantita($codice_prodotto, $quantita) {
         $sql = "select quantita from Prodotti where codice_prodotto='$codice_prodotto'";
         $conn = parent::getConnection();
