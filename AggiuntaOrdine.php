@@ -1,5 +1,6 @@
 <?php
 include_once "session.php";
+include_once "ConfermaAggiuntaOrdine.php";
 require_once 'Dao/UtentiDao.php';
 require_once 'Dao/AcquistiDao.php';
 require_once 'bean/Acquisto.php';
@@ -27,7 +28,7 @@ $clienti=$dao->findAll();
             <?php include_once 'header.php' ?>
 		<div class="container" style="margin-top: 150px">
 			<h1>Aggiunta Ordine</h1><br><br>
-			<form action="ConfermaAggiuntaOrdine.php" method="POST">
+			<form action="" method="POST">
 				<div class="row">
 					<div class="col-md-6">
 						<h3>Data Ordine</h3>
@@ -44,7 +45,8 @@ $clienti=$dao->findAll();
 						<h3>Prodotto</h3>
 						<select name="prodotto">
 						    <?php foreach ($prodotti as $prodotto) { ?>
-								<option><?php echo $prodotto->getCodice_prodotto(); ?></option>
+								<option value="<?php echo $prodotto->getCodice_prodotto(); ?>">
+                                                                    <?php echo $prodotto->getDenominazione(); ?></option>
 							<?php } ?>
 						</select>
 
@@ -54,7 +56,8 @@ $clienti=$dao->findAll();
 						<h3>Cliente</h3>
 						<select name="cliente">
 						    <?php foreach ($clienti as $cliente) { ?>
-							<option><?php echo $cliente->getCodice_utente(); ?></option>
+							<option value="<?php echo $cliente->getCodice_utente(); ?>">
+                                                        <?php echo $cliente->getUsername(); ?></option>
 							<?php } ?>
 						</select>
 
