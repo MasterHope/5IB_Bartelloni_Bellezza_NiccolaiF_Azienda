@@ -55,7 +55,7 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
         <div style="z-index: 1000;">
         <div class="alert-success"><h6 style="text-align: center;font-family: inherit">Ordine effettuato con successo!</h6></div>
         </div>
-        <div class="super_container" style="margin-top: 150px">
+        <div class="super_container" style="margin-top: 100px">
             <!-- Product Details -->
             <div class="product_details">
                 <div class="container">
@@ -83,7 +83,6 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
              <div style="z-index: 1000;">
             <div class="alert-danger"><h6 style="text-align: center;font-family: inherit">Prodotti non sufficienti nel magazzino!</h6></div></div>
             <?php }}} ?>
-          
             
 </div>
 
@@ -92,6 +91,10 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
 
 
             <?php include_once 'footer.php'; ?>
+    <center><div class="button cart_button">
+             <a href="Prodotto.php?prodotto=<?php echo $codice_prodotto; ?>"> 
+                 Indietro</a> </div></center>
+            
             <script src="js/jquery-3.2.1.min.js"></script>
             <script src="styles/bootstrap4/popper.js"></script>
             <script src="styles/bootstrap4/bootstrap.min.js"></script>

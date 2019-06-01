@@ -4,9 +4,9 @@ require_once'isCliente.php';
 require_once 'Dao/ProdottiDao.php';
 require_once 'bean/Prodotto.php';
 if (isset($_GET['prodotto'])) {
-    $codice_utente = $_GET['prodotto'];
+    $codice = $_GET['prodotto'];
     $daoProdotti = new ProdottiDao();
-    $prodotto = $daoProdotti->getProdotto($codice_utente);
+    $prodotto = $daoProdotti->getProdotto($codice);
 }
 ?>
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ if (isset($_GET['prodotto'])) {
             <?php include_once 'header.php'; ?>
         <div class="super_container" style="margin-top: 150px">
             <!-- Product Details -->
-<form action="ConfermaOrdine.php?codice=<?php echo"$codice_utente"?>" method="POST" name="ordine">
+<form action="ConfermaOrdine.php?codice=<?php echo"$codice"?>" method="POST" name="ordine">
             <div class="product_details">
                 <div class="container">
                     <div class="row details_row">
