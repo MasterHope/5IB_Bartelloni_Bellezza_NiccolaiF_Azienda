@@ -122,7 +122,11 @@ class UtentiDao extends Dao {
         parent::closeConnection($connection);
         return $ruolo;
     }
-
+    /**
+     * Metodo per la rimozione degli utenti.
+     * @param string $codice_utente Stringa dell'utente.
+     * @return boolean true se tutto va a buon fine, false altrimenti.
+     */
     public function remove($codice_utente) {
         $ok = false;
         $connection = parent::getConnection();
