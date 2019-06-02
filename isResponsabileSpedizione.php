@@ -1,5 +1,5 @@
 <?php
-//Questo file viene utilizzato per verificare se una determinata persona è un responsabile spedizione o meno.
+//Questo file viene utilizzato per verificare se una determinata persona è un responsabile delle spedizioni o meno.
 require_once"Dao/UtentiDao.php";
 if(!isset($_SESSION)){
     session_start();
