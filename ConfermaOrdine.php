@@ -64,8 +64,8 @@ if (isset($_POST['quantita']) && isset($_GET['codice'])) {
                         <div class="col-lg-6">
                             <div class="details_content">
                                 <div class="details_name"><?php print($prodotto->getDenominazione()); ?></div>
-                                <div class="details_price"><?php echo"$prezzo" .
-                                        " x" . "$quantita" . "<br>Totale="  ."$importo"?></div>
+                                <div class="details_price"><?php echo"$prezzo" . "€" .
+                                        " x" . "$quantita" . "<br>Totale="  ."$importo" . "€"?> </div>
                                 
                             <div class="description_text">
                                 <?php print($prodotto->getDescrizione()); ?>
