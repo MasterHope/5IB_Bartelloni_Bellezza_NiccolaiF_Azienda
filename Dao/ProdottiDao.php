@@ -109,6 +109,7 @@ class ProdottiDao extends Dao {
 
     /**
      * Metodo che aggiorna la quantità dei prodotti disponibili in magazzino.
+     * Questa funzione viene utilizzata per sottrarre la quantità dei prodotti dopo un ordine.
      * @param string $codice_prodotto Codice del prodotto.
      * @param int $quantita Quantita da rimuovere dal magazzino.
      * @return int 1 se tutto va bene,-1 se c'è un errore nella query,-2 se il numero dei prodotti è negativo.
@@ -130,7 +131,31 @@ class ProdottiDao extends Dao {
         return $ok;
     }
     /**
-     * Metodo che ritorna la quantità di un determinato prodotto.
+     * Metodo che aggiorna la quantità dei prodotti disponibili in magazzino.
+     * Questa funzione viene utilizzata per sottrarre la quantità dei prodotti dopo
+     * un'operazione del magazziniere.
+     * @param string $codice_prodotto Codice del prodotto.
+     * @param int $quantita Quantita da rimuovere dal magazzino.
+     * @return int 1 se tutto va bene,-1 se c'è un errore nella query,-2 se il numero dei prodotti è negativo.
+     */
+    public function aggiungiQuantita($codice_prodotto, $quantita) {
+        $nuovaQuantita = $this->getQuantitaAggiunta($codice_prodotto, $quantita);
+        $ok = 1;
+        if ($nuovaQuantita >= 0) {
+            $sql = "update Prodotti set quantita=? where codice_prodotto=?";
+            $connection = parent::getConnection();
+            $st = $connection->prepare($sql);
+            $st->bind_param("is", $nuovaQuantita, $codice_prodotto);
+            if (!$st->execute()) {
+                $ok = -1;
+            }
+        } else {
+            $ok = $nuovaQuantita;
+        }
+        return $ok;
+    }
+    /**
+     * Metodo che ritorna la quantità di un determinato prodotto dopo un determinato ordine.
      * @param String $codice_prodotto
      * @param Int $quantita
      * @return Int la quantità desiderata
@@ -144,4 +169,20 @@ class ProdottiDao extends Dao {
         return $quant - $quantita;
     }
 
+    
+    /**
+     * Metodo che ritorna la quantità di un determinato prodotto dopo un determinato inserimento
+     * del prodotto da parte di un magazziniere.
+     * @param String $codice_prodotto
+     * @param Int $quantita
+     * @return Int la quantità desiderata
+     */
+    public function getQuantitaAggiunta($codice_prodotto, $quantita) {
+        $sql = "select quantita from Prodotti where codice_prodotto='$codice_prodotto'";
+        $conn = parent::getConnection();
+        $result = $conn->query($sql);
+        $row = $result->fetch_array();
+        $quant = $row['quantita'];
+        return $quant + $quantita;
+    }
 }

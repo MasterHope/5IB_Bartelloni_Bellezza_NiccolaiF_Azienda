@@ -10,10 +10,10 @@ if (!isset($_REQUEST['quantita']) || !isset($_REQUEST['codice'])) {
 	//ERRORE
 }
 
-$codice_prodotto = filter_input(INPUT_POST,"codice",FILTER_SANITIZE_STRING);
+$codice_prodotto = filter_input(INPUT_GET,"codice",FILTER_SANITIZE_STRING);
 $quantita = filter_input(INPUT_POST,"quantita",FILTER_SANITIZE_NUMBER_INT);
 $dao = new ProdottiDao();
-if ($dao->aggiornaQuantitaProdotto($codice_prodotto, $quantita)) {
+if ($dao->aggiungiQuantita($codice_prodotto, $quantita)) {
     ?><center><div style="margin-top:150px">Quantita aggiornata</div></center><?php
 }
 ?>
