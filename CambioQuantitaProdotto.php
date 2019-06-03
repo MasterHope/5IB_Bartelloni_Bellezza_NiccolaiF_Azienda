@@ -38,12 +38,6 @@ if (isset($_REQUEST['prodotto'])) {
 								<div class="details_content">
 									<div class="details_name"><?php print($prodotto->getDenominazione()); ?></div>
 									<div class="details_price"><?php print($prodotto->getPrezzo()); ?></div>
-
-									<!-- In Stock -->
-									<div class="in_stock_container">
-										<div class="availability">Availability:</div>
-										<span>In Stock</span>
-									</div>
 									<!-- Product Quantity -->
 									<div class="product_quantity_container">
 										<div class="product_quantity clearfix">

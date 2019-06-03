@@ -24,6 +24,5 @@ if ($dao->aggiungiQuantita($codice_prodotto, $quantita)) {
 		<title>Conferma Cambio Quantità</title>
 	</head>
 	<body>
-<?php ?>
 	</body>
 </html>
