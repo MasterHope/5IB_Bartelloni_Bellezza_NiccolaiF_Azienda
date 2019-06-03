@@ -130,6 +130,30 @@ class ProdottiDao extends Dao {
         }
         return $ok;
     }
+
+    /**
+     * Metodo che aggiorna la quantità dei prodotti disponibili in magazzino.
+     * Questa funzione viene utilizzata per sottrarre la quantità dei prodotti dopo un ordine.
+     * @param string $codice_prodotto Codice del prodotto.
+     * @param int $quantita Quantita da rimuovere dal magazzino.
+     * @return int 1 se tutto va bene,-1 se c'è un errore nella query,-2 se il numero dei prodotti è negativo.
+     */
+    public function impostaQuantita($codice_prodotto, $quantita) {
+        $ok = 1;
+        if ($quantita >= 0) {
+            $sql = "update Prodotti set quantita=? where codice_prodotto=?";
+            $connection = parent::getConnection();
+            $st = $connection->prepare($sql);
+            $st->bind_param("is", $quantita, $codice_prodotto);
+            if (!$st->execute()) {
+                $ok = -1;
+            }
+        } else {
+            $ok = $quantita;
+        }
+        return $ok;
+    }
+
     /**
      * Metodo che aggiorna la quantità dei prodotti disponibili in magazzino.
      * Questa funzione viene utilizzata per sottrarre la quantità dei prodotti dopo

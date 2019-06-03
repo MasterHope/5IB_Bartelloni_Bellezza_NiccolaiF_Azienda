@@ -13,7 +13,7 @@ if (!isset($_REQUEST['quantita']) || !isset($_REQUEST['codice'])) {
 $codice_prodotto = filter_input(INPUT_GET,"codice",FILTER_SANITIZE_STRING);
 $quantita = filter_input(INPUT_POST,"quantita",FILTER_SANITIZE_NUMBER_INT);
 $dao = new ProdottiDao();
-if ($dao->aggiungiQuantita($codice_prodotto, $quantita)) {
+if ($dao->impostaQuantita($codice_prodotto, $quantita)) {
     ?><center><div style="margin-top:150px">Quantita aggiornata</div></center><?php
 }
 ?>

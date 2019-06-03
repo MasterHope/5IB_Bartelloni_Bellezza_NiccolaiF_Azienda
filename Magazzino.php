@@ -17,6 +17,7 @@ $prodotti = $prodottiDao->findAll();
 	<body>
 	    <?php include_once 'header.php'; ?>
 		<div class="container" style="margin-top: 150px">
+		<h1>Magazzino</h1>	
 				<div class="row">
 					<div class="col-md-4"><h4><b>Prodotto</b></h4></div>
 					<div class="col-md-4"><h4><b>Prezzo</b></h4></div>
