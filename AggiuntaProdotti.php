@@ -41,7 +41,7 @@ $listaProdotti = $prodotti->findAll();
 		    </center>
 		</div>
 		<div class="row" style="margin-top: 10px">
-		    <div class="col-md-6"><input type="submit"></div>
+		    <div class="col-md-6"><input type="submit" value="Aggiungi Prodotto"></div>
 		</div>
 
 
