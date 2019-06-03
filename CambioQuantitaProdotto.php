@@ -37,7 +37,7 @@ if (isset($_REQUEST['prodotto'])) {
 							<div class="col-lg-6">
 								<div class="details_content">
 									<div class="details_name"><?php print($prodotto->getDenominazione()); ?></div>
-									<div class="details_price"><?php print($prodotto->getPrezzo()); ?></div>
+									<div class="details_price"><?php print($prodotto->getPrezzo()); ?>€</div>
 									<!-- Product Quantity -->
 									<div class="product_quantity_container">
 										<div class="product_quantity clearfix">

@@ -25,7 +25,7 @@ $prodotti = $prodottiDao->findAll();
 		    <?php foreach ($prodotti as $prodotto) { ?>
 				<div class="row">
                                     <div class="col-md-4"><a href="CambioQuantitaProdotto.php?prodotto=<?php echo $prodotto->getCodice_prodotto() ?>"> <?php echo $prodotto->getDenominazione() ?></a></div>
-					<div class="col-md-4"><?php echo $prodotto->getPrezzo() ?></div>
+					<div class="col-md-4"><?php echo $prodotto->getPrezzo() ?>€</div>
 					<div class="col-md-4"><?php echo $prodotto->getQuantita() ?></div>
 				</div>
 
