@@ -42,7 +42,7 @@
                                             <div class="home_slider_content"  data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
                                                 <div class="home_slider_title">Miglior Progetto di sempre</div>
                                                 <div class="home_slider_subtitle">Solo i migliori prodotti</div>
-                                                <div class="button button_light home_button"><a href="#">Acquista Ora</a></div>
+                                                <div class="button button_light home_button"><a href="#">Acquista sta Ora</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>	
+                        </div>
                     </div>
 
                 </div>
